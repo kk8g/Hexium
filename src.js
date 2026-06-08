@@ -1,8 +1,8 @@
 // ==UserScript==
-// @name         Hexium / v1.8.2
+// @name         Hexium / beta
 // @namespace    http://tampermonkey.net/
 // @version      5.4.2
-// @description  WITH API REFRESH + TRADE SUITE (Enhanced Trade Window from v2.0.0)
+// @description  enhance pekora
 // @author       @Model / @CardCounting
 // @match        https://www.pekora.zip/*
 // @grant        GM_setValue
