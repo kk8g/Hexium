@@ -1,0 +1,1659 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hexium — Pekora Suite</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Mona+Sans:ital,wdth,wght@0,75..125,200..900;1,75..125,200..900&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --c-bg:       #07060c;
+  --c-surface:  #0e0c18;
+  --c-surface2: #14121f;
+  --c-border:   #1e1a2e;
+  --c-border2:  #2c2640;
+  --c-text:     #e8e2f5;
+  --c-muted:    #7060a0;
+  --sunset-1:   #7c3aed;
+  --sunset-2:   #a855f7;
+  --sunset-3:   #ec4899;
+  --sunset-4:   #f97316;
+  --sunset-5:   #fb923c;
+  --grad: linear-gradient(135deg, var(--sunset-1), var(--sunset-2), var(--sunset-3), var(--sunset-4));
+  --grad-text: linear-gradient(90deg, #a855f7, #ec4899, #f97316);
+  --font: 'Mona Sans', system-ui, sans-serif;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--c-bg);
+  color: var(--c-text);
+  font-family: var(--font);
+  font-size: 15px;
+  line-height: 1.6;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* subtle grid */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(168,85,247,0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(168,85,247,0.025) 1px, transparent 1px);
+  background-size: 44px 44px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ambient glow orbs */
+.orb {
+  position: fixed;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+  filter: blur(80px);
+  opacity: 0.18;
+}
+.orb-1 { width: 600px; height: 600px; background: #7c3aed; top: -200px; left: -200px; animation: orb-drift 18s ease-in-out infinite alternate; }
+.orb-2 { width: 500px; height: 500px; background: #f97316; bottom: -150px; right: -150px; animation: orb-drift 22s ease-in-out infinite alternate-reverse; }
+.orb-3 { width: 400px; height: 400px; background: #ec4899; top: 40%; left: 50%; transform: translate(-50%,-50%); animation: orb-drift 16s ease-in-out infinite; }
+
+@keyframes orb-drift {
+  from { transform: translate(0,0) scale(1); }
+  to   { transform: translate(40px, 30px) scale(1.08); }
+}
+
+/* NAV */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 48px;
+  height: 62px;
+  background: rgba(7,6,12,0.8);
+  border-bottom: 1px solid var(--c-border);
+  backdrop-filter: blur(20px);
+}
+
+.nav-logo {
+  font-family: var(--font);
+  font-size: 16px;
+  font-weight: 800;
+  font-stretch: 125%;
+  background: var(--grad-text);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: -0.01em;
+  text-decoration: none;
+}
+
+.nav-links {
+  display: flex;
+  gap: 36px;
+  list-style: none;
+}
+
+.nav-links a {
+  color: var(--c-muted);
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  transition: color 0.2s;
+}
+
+.nav-links a:hover { color: var(--c-text); }
+
+.nav-cta {
+  padding: 8px 20px;
+  background: var(--grad);
+  color: #fff;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  font-stretch: 110%;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: filter 0.2s, transform 0.1s;
+  box-shadow: 0 4px 24px rgba(168,85,247,0.3);
+}
+
+.nav-cta:hover { filter: brightness(1.1); transform: translateY(-1px); }
+
+/* HERO */
+.hero {
+  position: relative;
+  z-index: 1;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 120px 40px 80px;
+}
+
+.hero-logo-wrap {
+  position: relative;
+  margin-bottom: 40px;
+}
+
+.hero-logo {
+  width: 340px;
+  max-width: 90vw;
+  animation: logo-float 6s ease-in-out infinite;
+  filter: drop-shadow(0 0 40px rgba(168,85,247,0.5)) drop-shadow(0 0 80px rgba(249,115,22,0.25));
+}
+
+@keyframes logo-float {
+  0%, 100% { transform: translateY(0px); filter: drop-shadow(0 0 40px rgba(168,85,247,0.5)) drop-shadow(0 0 80px rgba(249,115,22,0.25)); }
+  50%       { transform: translateY(-14px); filter: drop-shadow(0 0 60px rgba(168,85,247,0.7)) drop-shadow(0 20px 80px rgba(249,115,22,0.4)); }
+}
+
+.hero-logo-ring {
+  position: absolute;
+  inset: -20px;
+  border-radius: 50%;
+  border: 1px solid rgba(168,85,247,0.15);
+  animation: ring-spin 20s linear infinite;
+  display: none;
+}
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 16px;
+  background: rgba(168,85,247,0.08);
+  border: 1px solid rgba(168,85,247,0.25);
+  border-radius: 100px;
+  font-size: 11px;
+  font-weight: 700;
+  color: #a855f7;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 24px;
+}
+
+.hero-badge-dot {
+  width: 6px; height: 6px;
+  background: #a855f7;
+  border-radius: 50%;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%       { opacity: 0.3; transform: scale(0.6); }
+}
+
+.hero h1 {
+  font-size: clamp(44px, 7vw, 88px);
+  font-weight: 900;
+  font-stretch: 115%;
+  line-height: 1.0;
+  letter-spacing: -0.03em;
+  margin-bottom: 22px;
+}
+
+.grad-text {
+  background: var(--grad-text);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hero p {
+  font-size: 18px;
+  color: var(--c-muted);
+  max-width: 540px;
+  margin: 0 auto 44px;
+  line-height: 1.75;
+  font-weight: 400;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 30px;
+  background: var(--grad);
+  color: #fff;
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 800;
+  font-stretch: 110%;
+  letter-spacing: 0.06em;
+  text-decoration: none;
+  text-transform: uppercase;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 8px 32px rgba(168,85,247,0.35);
+  transition: filter 0.2s, transform 0.1s, box-shadow 0.2s;
+}
+
+.btn-primary:hover { filter: brightness(1.1); transform: translateY(-2px); box-shadow: 0 12px 40px rgba(168,85,247,0.5); }
+
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 30px;
+  background: transparent;
+  color: var(--c-text);
+  border: 1px solid var(--c-border2);
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-decoration: none;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: border-color 0.2s, background 0.2s, transform 0.1s;
+}
+
+.btn-ghost:hover { border-color: #7c3aed; background: rgba(124,58,237,0.08); transform: translateY(-2px); }
+
+/* STATS */
+.stats-row {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  background: var(--c-surface);
+  border-top: 1px solid var(--c-border);
+  border-bottom: 1px solid var(--c-border);
+}
+
+.stat-item {
+  flex: 1;
+  max-width: 220px;
+  padding: 30px 20px;
+  text-align: center;
+  border-right: 1px solid var(--c-border);
+}
+
+.stat-item:last-child { border-right: none; }
+
+.stat-val {
+  display: block;
+  font-size: 30px;
+  font-weight: 900;
+  font-stretch: 120%;
+  background: var(--grad-text);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  line-height: 1;
+  margin-bottom: 6px;
+}
+
+.stat-lbl {
+  font-size: 11px;
+  color: var(--c-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-weight: 600;
+}
+
+/* SECTION */
+section {
+  position: relative;
+  z-index: 1;
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 90px 40px;
+}
+
+.eyebrow {
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  background: var(--grad-text);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 14px;
+}
+
+.section-title {
+  font-size: clamp(28px, 4vw, 42px);
+  font-weight: 800;
+  font-stretch: 110%;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+  margin-bottom: 14px;
+}
+
+.section-sub {
+  color: var(--c-muted);
+  font-size: 16px;
+  max-width: 480px;
+  margin-bottom: 52px;
+  line-height: 1.7;
+}
+
+/* INSTALL */
+.install-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px;
+  align-items: start;
+}
+
+@media (max-width: 768px) { .install-wrapper { grid-template-columns: 1fr; } }
+
+.code-card {
+  background: var(--c-surface);
+  border: 1px solid var(--c-border);
+  border-radius: 14px;
+  overflow: hidden;
+}
+
+.code-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  background: var(--c-surface2);
+  border-bottom: 1px solid var(--c-border);
+}
+
+.code-card-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--c-muted);
+  letter-spacing: 0.08em;
+}
+
+.code-card-dots {
+  display: flex;
+  gap: 5px;
+}
+.code-card-dots span {
+  width: 10px; height: 10px; border-radius: 50%;
+}
+.dot-r { background: #ff5f57; }
+.dot-y { background: #febc2e; }
+.dot-g { background: #28c840; }
+
+.copy-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 12px;
+  background: rgba(168,85,247,0.1);
+  border: 1px solid rgba(168,85,247,0.25);
+  border-radius: 6px;
+  color: #a855f7;
+  font-family: var(--font);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+  transition: background 0.15s, transform 0.1s;
+}
+
+.copy-btn:hover { background: rgba(168,85,247,0.2); transform: translateY(-1px); }
+.copy-btn.copied { color: #00e87a; border-color: rgba(0,232,122,0.3); background: rgba(0,232,122,0.08); }
+
+.code-area {
+  padding: 20px;
+  font-family: 'Menlo', 'Fira Code', monospace;
+  font-size: 11px;
+  color: #8888b0;
+  line-height: 1.75;
+  white-space: pre;
+  overflow-x: auto;
+  user-select: all;
+}
+
+.code-area::-webkit-scrollbar { width: 3px; height: 3px; }
+.code-area::-webkit-scrollbar-thumb { background: var(--c-border2); border-radius: 2px; }
+
+.code-kw  { color: #c084fc; }
+.code-str { color: #86efac; }
+.code-cm  { color: #3a3660; }
+.code-fn  { color: #fb923c; }
+.code-num { color: #f97316; }
+
+/* STEPS */
+.steps { display: flex; flex-direction: column; gap: 12px; }
+
+.step {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  padding: 16px;
+  background: var(--c-surface);
+  border: 1px solid var(--c-border);
+  border-radius: 12px;
+  transition: border-color 0.2s;
+}
+
+.step:hover { border-color: rgba(168,85,247,0.3); }
+
+.step-num {
+  width: 30px; height: 30px;
+  border-radius: 50%;
+  background: rgba(168,85,247,0.1);
+  border: 1px solid rgba(168,85,247,0.3);
+  background: linear-gradient(135deg, rgba(124,58,237,0.15), rgba(249,115,22,0.1));
+  font-size: 11px;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  background-clip: padding-box;
+}
+
+.step-num span {
+  background: var(--grad-text);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.step h3 { font-size: 13px; font-weight: 700; margin-bottom: 3px; }
+.step p  { font-size: 12px; color: var(--c-muted); line-height: 1.6; }
+.step a  { color: #a855f7; text-decoration: none; }
+.step a:hover { text-decoration: underline; }
+
+/* FEATURES */
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 16px;
+}
+
+.feature-card {
+  background: var(--c-surface);
+  border: 1px solid var(--c-border);
+  border-radius: 14px;
+  padding: 24px 20px;
+  transition: border-color 0.25s, transform 0.25s, box-shadow 0.25s;
+  cursor: default;
+  position: relative;
+  overflow: hidden;
+}
+
+.feature-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: var(--grad);
+  opacity: 0;
+  transition: opacity 0.25s;
+}
+
+.feature-card:hover {
+  border-color: rgba(168,85,247,0.3);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(124,58,237,0.15);
+}
+
+.feature-card:hover::before { opacity: 1; }
+
+.feature-icon {
+  width: 40px; height: 40px;
+  background: linear-gradient(135deg, rgba(124,58,237,0.15), rgba(249,115,22,0.08));
+  border: 1px solid rgba(168,85,247,0.2);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+
+.feature-icon svg { width: 18px; height: 18px; color: #a855f7; }
+.feature-card h3 { font-size: 14px; font-weight: 700; margin-bottom: 8px; }
+.feature-card p  { font-size: 12px; color: var(--c-muted); line-height: 1.7; }
+
+/* THEMES */
+.themes-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 10px;
+  margin-bottom: 40px;
+}
+
+@media (max-width: 600px) { .themes-grid { grid-template-columns: repeat(3,1fr); } }
+
+.theme-swatch {
+  aspect-ratio: 1;
+  border-radius: 12px;
+  border: 1px solid var(--c-border);
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.15s, border-color 0.15s, box-shadow 0.15s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  padding-bottom: 9px;
+}
+
+.theme-swatch:hover { transform: scale(1.07); box-shadow: 0 8px 24px rgba(0,0,0,0.4); }
+.theme-swatch.active { border-width: 1.5px; }
+.swatch-dot { width: 20px; height: 20px; border-radius: 50%; margin-bottom: 6px; }
+.swatch-name { font-size: 9px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; }
+
+.theme-preview {
+  background: var(--c-surface);
+  border: 1px solid var(--c-border);
+  border-radius: 12px;
+  padding: 16px;
+  font-size: 12px;
+  color: var(--c-muted);
+}
+
+/* PANEL PREVIEW */
+.preview-container {
+  display: grid;
+  grid-template-columns: 1fr 420px;
+  gap: 40px;
+  align-items: start;
+}
+
+@media (max-width: 900px) { .preview-container { grid-template-columns: 1fr; } }
+
+.preview-info { }
+.preview-info .section-title { margin-bottom: 18px; }
+.preview-info p { color: var(--c-muted); line-height: 1.75; margin-bottom: 16px; }
+
+.feature-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 12px;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 700;
+  background: rgba(168,85,247,0.08);
+  border: 1px solid rgba(168,85,247,0.2);
+  color: #c084fc;
+  margin: 3px;
+}
+
+.tags-wrap { display: flex; flex-wrap: wrap; margin-bottom: 28px; }
+
+/* MOCK PANEL */
+.mock-panel {
+  background: #0d0c16;
+  border: 1px solid #252040;
+  border-radius: 16px;
+  width: 380px;
+  max-width: 100%;
+  overflow: hidden;
+  box-shadow: 0 20px 80px rgba(124,58,237,0.2), 0 0 0 1px rgba(255,255,255,0.04);
+  font-family: var(--font);
+  user-select: none;
+  animation: panel-float 8s ease-in-out infinite;
+}
+
+@keyframes panel-float {
+  0%, 100% { transform: translateY(0); box-shadow: 0 20px 80px rgba(124,58,237,0.2), 0 0 0 1px rgba(255,255,255,0.04); }
+  50%       { transform: translateY(-8px); box-shadow: 0 28px 100px rgba(124,58,237,0.3), 0 0 0 1px rgba(255,255,255,0.04); }
+}
+
+.mp-topbar {
+  height: 3px;
+  background: linear-gradient(90deg, #7c3aed, #a855f7, #ec4899, #f97316, #fb923c);
+  background-size: 200% 100%;
+  animation: topbar-shift 3s linear infinite;
+}
+
+@keyframes topbar-shift {
+  0%   { background-position: 0% 0%; }
+  100% { background-position: 200% 0%; }
+}
+
+.mp-header {
+  background: #111020;
+  padding: 12px 14px;
+  border-bottom: 1px solid #1e1a30;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.mp-avatar {
+  width: 38px; height: 38px;
+  border-radius: 50%;
+  border: 2px solid rgba(168,85,247,0.4);
+  background: linear-gradient(135deg, #7c3aed22, #f9731622);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.mp-avatar svg { width: 16px; height: 16px; color: rgba(255,255,255,0.3); }
+
+.mp-info { flex: 1; }
+
+.mp-title {
+  font-size: 8px;
+  font-weight: 800;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  background: var(--grad-text);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 2px;
+}
+
+.mp-user {
+  color: #fff;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.mp-currency {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  align-items: flex-end;
+}
+
+.mp-pill {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background: #16132a;
+  border: 1px solid #1e1a30;
+  border-radius: 5px;
+  padding: 2px 9px;
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.mp-pill .symbol { font-size: 8px; }
+.mp-pill.robux .symbol { color: #a855f7; }
+.mp-pill.tix .symbol { color: #f97316; }
+.mp-pill.robux .val { color: #fff; }
+.mp-pill.tix .val { color: #fff; }
+
+.mp-wbtns {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  align-items: center;
+  margin-left: 4px;
+}
+.mp-wb {
+  width: 11px; height: 11px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+.mp-wb-y { background: #febc2e; }
+.mp-wb-r { background: #ff5f57; }
+
+.mp-tabs {
+  display: flex;
+  background: #0e0d18;
+  border-bottom: 1px solid #1a1828;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.mp-tab {
+  flex: 1;
+  padding: 10px 4px;
+  text-align: center;
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: #404060;
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  transition: color 0.15s, border-color 0.15s;
+  white-space: nowrap;
+}
+
+.mp-tab.active {
+  color: #a855f7;
+  border-bottom-color: #a855f7;
+  background: rgba(168,85,247,0.05);
+}
+
+.mp-tab:hover:not(.active) { color: #7060a0; }
+
+.mp-body { padding: 14px; }
+
+/* refresher pane */
+.mp-status-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 12px;
+  background: #13111e;
+  border: 1px solid #1e1a30;
+  border-radius: 8px;
+  margin-bottom: 14px;
+}
+
+.mp-dot {
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: #2e2850;
+  flex-shrink: 0;
+  transition: background 0.3s, box-shadow 0.3s;
+}
+
+.mp-dot.on {
+  background: #a855f7;
+  box-shadow: 0 0 8px #a855f7;
+}
+
+.mp-status-text { font-size: 11px; color: #5a5080; flex: 1; }
+.mp-status-text span { color: #ccc; }
+
+.mp-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+  gap: 8px;
+}
+
+.mp-label { font-size: 11px; color: #8070b0; flex: 1; }
+
+.mp-input {
+  background: #13111e;
+  border: 1px solid #1e1a30;
+  border-radius: 5px;
+  color: #e0d0f8;
+  font-size: 11px;
+  padding: 4px 8px;
+  width: 80px;
+  font-family: var(--font);
+  pointer-events: none;
+}
+
+.mp-unit { font-size: 10px; color: #3a3060; }
+
+.mp-actions {
+  display: flex;
+  gap: 8px;
+  margin: 14px 0 12px;
+}
+
+.mp-btn-start {
+  flex: 1;
+  padding: 9px;
+  background: linear-gradient(135deg, #7c3aed, #ec4899);
+  border: none;
+  border-radius: 8px;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.07em;
+  cursor: pointer;
+  font-family: var(--font);
+  transition: filter 0.15s, transform 0.1s;
+  box-shadow: 0 4px 16px rgba(124,58,237,0.3);
+}
+
+.mp-btn-start:hover { filter: brightness(1.1); transform: translateY(-1px); }
+
+.mp-btn-stop {
+  flex: 1;
+  padding: 9px;
+  background: #1a1830;
+  border: 1px solid #2a2440;
+  border-radius: 8px;
+  color: #5a5080;
+  font-size: 11px;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: var(--font);
+  transition: background 0.15s, border-color 0.15s, color 0.15s;
+}
+
+.mp-btn-stop.active { background: #2a1520; border-color: rgba(239,68,68,0.4); color: #ef4444; }
+
+.mp-stats {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.mp-stat {
+  flex: 1;
+  background: #13111e;
+  border: 1px solid #1e1a30;
+  border-radius: 7px;
+  padding: 8px;
+  text-align: center;
+}
+
+.mp-stat-val {
+  display: block;
+  font-size: 22px;
+  font-weight: 900;
+  background: var(--grad-text);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  line-height: 1;
+  margin-bottom: 3px;
+}
+
+.mp-stat-lbl { font-size: 8px; color: #3a3060; text-transform: uppercase; letter-spacing: 0.1em; }
+
+.mp-log {
+  background: #07060c;
+  border: 1px solid #13101e;
+  border-radius: 7px;
+  padding: 8px;
+  height: 72px;
+  overflow-y: auto;
+  font-size: 10px;
+  line-height: 1.7;
+  color: #3a3060;
+}
+
+.mp-log .log-entry { color: #5a50a0; }
+.mp-log .log-entry.accent { color: #a855f7; }
+.mp-log .log-entry.orange { color: #f97316; }
+
+/* monitor pane */
+.mp-section-title {
+  font-size: 8px;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #3a3060;
+  margin: 14px 0 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.mp-section-title::after { content: ''; flex: 1; height: 1px; background: currentColor; opacity: 0.2; }
+
+.mp-select {
+  background: #13111e;
+  border: 1px solid #1e1a30;
+  border-radius: 5px;
+  color: #e0d0f8;
+  font-size: 11px;
+  padding: 4px 8px;
+  font-family: var(--font);
+  pointer-events: none;
+}
+
+/* themes pane */
+.mp-theme-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px;
+}
+
+.mp-theme-btn {
+  all: unset;
+  padding: 7px 8px;
+  border-radius: 6px;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  border: 1px solid #1e1a30;
+  background: #13111e;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  transition: all 0.15s;
+}
+
+.mp-theme-btn .t-dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
+.mp-theme-btn.active { border-color: #a855f7; background: rgba(168,85,247,0.1); color: #a855f7; }
+.mp-theme-btn:hover:not(.active) { border-color: #2c2640; background: #16132a; }
+
+/* CHANGELOG */
+.changelog { display: flex; flex-direction: column; }
+
+.changelog-item {
+  display: grid;
+  grid-template-columns: 130px 1fr;
+  gap: 20px;
+  padding: 22px 0;
+  border-bottom: 1px solid var(--c-border);
+  align-items: start;
+}
+
+.changelog-item:first-child { border-top: 1px solid var(--c-border); }
+
+.changelog-ver {
+  font-size: 13px;
+  font-weight: 800;
+  background: var(--grad-text);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  padding-top: 2px;
+}
+
+.changelog-date { font-size: 10px; color: var(--c-muted); margin-top: 4px; }
+
+.changelog-entries { list-style: none; display: flex; flex-direction: column; gap: 7px; }
+
+.changelog-entries li {
+  font-size: 13px;
+  color: var(--c-muted);
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  line-height: 1.5;
+}
+
+.changelog-entries li::before {
+  content: '';
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  background: var(--c-border2);
+  flex-shrink: 0;
+  margin-top: 8px;
+}
+
+.tag-new { background: rgba(168,85,247,0.12); color: #c084fc; font-size: 9px; padding: 2px 8px; border-radius: 4px; letter-spacing: 0.08em; font-weight: 700; flex-shrink: 0; margin-top: 2px; }
+.tag-soon { background: rgba(249,115,22,0.1); color: #fb923c; font-size: 9px; padding: 2px 8px; border-radius: 4px; letter-spacing: 0.08em; font-weight: 700; flex-shrink: 0; margin-top: 2px; }
+
+.divider {
+  position: relative;
+  z-index: 1;
+  height: 1px;
+  background: var(--c-border);
+  max-width: 1120px;
+  margin: 0 auto;
+}
+
+/* FOOTER */
+footer {
+  position: relative;
+  z-index: 1;
+  border-top: 1px solid var(--c-border);
+  padding: 32px 48px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.footer-left { font-size: 12px; color: var(--c-muted); }
+.footer-left span { background: var(--grad-text); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 700; }
+
+.footer-links { display: flex; gap: 24px; list-style: none; }
+.footer-links a { color: var(--c-muted); font-size: 12px; text-decoration: none; transition: color 0.2s; }
+.footer-links a:hover { color: var(--c-text); }
+
+/* MODAL */
+.modal-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.85);
+  z-index: 200;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(8px);
+}
+
+.modal-overlay.open { display: flex; }
+
+.modal {
+  background: var(--c-surface);
+  border: 1px solid var(--c-border2);
+  border-radius: 18px;
+  width: 600px;
+  max-width: calc(100vw - 32px);
+  max-height: 82vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  animation: modal-in 0.22s cubic-bezier(0.22,1,0.36,1);
+  box-shadow: 0 40px 120px rgba(0,0,0,0.8), 0 0 0 1px rgba(168,85,247,0.15);
+}
+
+@keyframes modal-in {
+  from { opacity: 0; transform: scale(0.94) translateY(12px); }
+  to   { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+.modal-topbar { height: 3px; background: var(--grad); }
+.modal-header { display: flex; align-items: center; justify-content: space-between; padding: 16px 20px; background: var(--c-surface2); border-bottom: 1px solid var(--c-border); }
+.modal-title { font-size: 12px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; background: var(--grad-text); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.modal-close { background: none; border: 1px solid var(--c-border2); border-radius: 6px; color: var(--c-muted); width: 28px; height: 28px; cursor: pointer; font-size: 14px; display: flex; align-items: center; justify-content: center; transition: all 0.15s; }
+.modal-close:hover { color: var(--c-text); border-color: var(--c-muted); }
+.modal-body { padding: 22px; overflow-y: auto; flex: 1; }
+
+/* TOAST */
+.toast {
+  position: fixed;
+  bottom: 24px; right: 24px;
+  z-index: 300;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 18px;
+  background: #0f0a1e;
+  border: 1px solid rgba(168,85,247,0.4);
+  border-radius: 10px;
+  font-size: 12px;
+  color: #e0d0f8;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.2s, transform 0.2s;
+  pointer-events: none;
+}
+
+.toast.show { opacity: 1; transform: translateY(0); }
+.toast-dot { width: 7px; height: 7px; border-radius: 50%; background: #a855f7; flex-shrink: 0; }
+</style>
+</head>
+<body>
+
+<div class="orb orb-1"></div>
+<div class="orb orb-2"></div>
+<div class="orb orb-3"></div>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">Hexium</a>
+  <ul class="nav-links">
+    <li><a href="#install">Install</a></li>
+    <li><a href="#features">Features</a></li>
+    <li><a href="#preview">Preview</a></li>
+    <li><a href="#changelog">Changelog</a></li>
+  </ul>
+  <a href="https://www.tampermonkey.net/" target="_blank" class="nav-cta">Get Tampermonkey</a>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-logo-wrap">
+    <img src="hexium-logo.png" alt="Hexium" class="hero-logo">
+  </div>
+  <div class="hero-badge"><div class="hero-badge-dot"></div>BETA — Active Development</div>
+  <h1>Trade smarter<br>on <span class="grad-text">Pekora</span></h1>
+  <p>A Tampermonkey suite that supercharges your Pekora trading experience — item monitoring, mass trading, custom themes, and more.</p>
+  <div class="hero-actions">
+    <button class="btn-primary" onclick="document.getElementById('install-modal').classList.add('open')">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+      Install Script
+    </button>
+    <a href="https://github.com/kk8g/Hexium" target="_blank" class="btn-ghost">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+      View on GitHub
+    </a>
+    <a href="#preview" class="btn-ghost">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+      Live Preview
+    </a>
+  </div>
+</div>
+
+<!-- STATS -->
+<div class="stats-row">
+  <div class="stat-item"><span class="stat-val">6</span><span class="stat-lbl">Themes</span></div>
+  <div class="stat-item"><span class="stat-val">4</span><span class="stat-lbl">Trade Slots</span></div>
+  <div class="stat-item"><span class="stat-val">5s</span><span class="stat-lbl">Poll Interval</span></div>
+  <div class="stat-item"><span class="stat-val">∞</span><span class="stat-lbl">Blast Targets</span></div>
+</div>
+
+<!-- INSTALL -->
+<section id="install">
+  <div class="eyebrow">// Installation</div>
+  <h2 class="section-title">Up and running<br>in minutes</h2>
+  <p class="section-sub">Two files — a tiny loader in Tampermonkey and the full script hosted on GitHub. No build tools, no hassle.</p>
+
+  <div class="install-wrapper">
+    <div class="code-card">
+      <div class="code-card-header">
+        <div class="code-card-title">
+          <div class="code-card-dots"><span class="dot-r"></span><span class="dot-y"></span><span class="dot-g"></span></div>
+          loader.user.js
+        </div>
+        <button class="copy-btn" id="copy-loader-btn" onclick="copyLoader()">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+          Copy
+        </button>
+      </div>
+      <div class="code-area" id="loader-code"></div>
+    </div>
+
+    <div class="steps">
+      <div class="step">
+        <div class="step-num"><span>1</span></div>
+        <div>
+          <h3>Install Tampermonkey</h3>
+          <p>Get the browser extension from <a href="https://www.tampermonkey.net/" target="_blank">tampermonkey.net</a> — Chrome, Firefox, Edge, and Safari all supported.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num"><span>2</span></div>
+        <div>
+          <h3>Create a new script</h3>
+          <p>Open the Tampermonkey dashboard → click the <strong>+</strong> icon to create a new userscript.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num"><span>3</span></div>
+        <div>
+          <h3>Paste the loader</h3>
+          <p>Replace all existing content with the loader script on the left, then save with <strong>Ctrl+S</strong>.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num"><span>4</span></div>
+        <div>
+          <h3>Visit Pekora</h3>
+          <p>Navigate to <a href="https://www.pekora.zip" target="_blank">pekora.zip</a> while logged in — Hexium loads automatically and verifies your access.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- FEATURES -->
+<section id="features">
+  <div class="eyebrow">// Features</div>
+  <h2 class="section-title">Everything you need<br>to trade smarter</h2>
+  <p class="section-sub">Built specifically for the Pekora ecosystem with real-time market data from Koromons.</p>
+
+  <div class="features-grid">
+    <div class="feature-card">
+      <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 16V4L3 8m4-4l4 4M17 8v12l4-4m-4 4l-4-4"/></svg></div>
+      <h3>Trade Window</h3>
+      <p>A fully custom trade UI with inventory browsing, search, sorting, and live value analytics powered by Koromons data.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h7"/></svg></div>
+      <h3>Mass Trader</h3>
+      <p>Blast trades to all owners of a target item, or build a custom target list with specific items per user — fully automated.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg></div>
+      <h3>Item Monitor</h3>
+      <p>Polls the catalog on a custom interval and fires notifications plus Discord webhooks when new limited items drop.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
+      <h3>Trade History</h3>
+      <p>View all inbound and outbound trades with full item details, value diffs, and accept/decline directly from the modal.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 2a10 10 0 1 0 10 10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+      <h3>Auto Refresher</h3>
+      <p>Clicks the genre selector on a configurable interval and hard-refreshes the page periodically. Hotkey toggled on the fly.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83"/></svg></div>
+      <h3>Six Themes</h3>
+      <p>Skeet, Void, Crimson, Arctic, Gold, and Matrix — with accent colours, card glows, and gradient top borders per theme.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg></div>
+      <h3>Page Customiser</h3>
+      <p>Transparent sidebars, blurred navbars, custom backgrounds, animated usernames, hidden ads, and per-page frame styles.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
+      <h3>Watermark HUD</h3>
+      <p>Draggable on-screen overlay showing session time, live ping, and username. Configurable position, scale, and opacity.</p>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- PANEL PREVIEW -->
+<section id="preview">
+  <div class="preview-container">
+    <div class="preview-info">
+      <div class="eyebrow">// Live Preview</div>
+      <h2 class="section-title">See it in action</h2>
+      <p>An interactive mockup of the Hexium panel — click tabs to switch views, toggle the refresher, and explore the theme selector. This is exactly what you'll see on Pekora.</p>
+      <p>The real panel includes live inventory data, Koromons value lookups, and full trade functionality.</p>
+      <div class="tags-wrap">
+        <span class="feature-tag"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 2a10 10 0 1 0 10 10"/><polyline points="12 6 12 12 16 14"/></svg> Auto Refresher</span>
+        <span class="feature-tag"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg> Item Monitor</span>
+        <span class="feature-tag"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M7 16V4L3 8m4-4l4 4M17 8v12l4-4"/></svg> Mass Trader</span>
+        <span class="feature-tag"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4"/></svg> 6 Themes</span>
+      </div>
+    </div>
+
+    <!-- MOCK PANEL -->
+    <div class="mock-panel" id="mock-panel">
+      <div class="mp-topbar"></div>
+      <div class="mp-header">
+        <div class="mp-avatar">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+        </div>
+        <div class="mp-info">
+          <div class="mp-title">Hexium [Beta]</div>
+          <div class="mp-user">CardCounting</div>
+        </div>
+        <div class="mp-currency">
+          <div class="mp-pill robux"><span class="symbol">R$</span><span class="val">12,540</span></div>
+          <div class="mp-pill tix"><span class="symbol">TIX</span><span class="val">3,200</span></div>
+        </div>
+        <div class="mp-wbtns">
+          <div class="mp-wb mp-wb-y"></div>
+          <div class="mp-wb mp-wb-r"></div>
+        </div>
+      </div>
+
+      <div class="mp-tabs">
+        <div class="mp-tab active" onclick="switchTab('refresher', this)">⟳ REFRESH</div>
+        <div class="mp-tab" onclick="switchTab('monitor', this)">◉ MON</div>
+        <div class="mp-tab" onclick="switchTab('themes', this)">✦ CFG</div>
+        <div class="mp-tab" onclick="switchTab('misc', this)">⊞ MISC</div>
+      </div>
+
+      <!-- REFRESHER PANE -->
+      <div class="mp-body" id="pane-refresher">
+        <div class="mp-status-bar">
+          <div class="mp-dot" id="r-dot"></div>
+          <div class="mp-status-text">Status: <span id="r-status-txt">Idle</span></div>
+        </div>
+        <div class="mp-row">
+          <span class="mp-label">Click interval</span>
+          <input class="mp-input" value="1500" readonly>
+          <span class="mp-unit">ms</span>
+        </div>
+        <div class="mp-row">
+          <span class="mp-label">Hard refresh every</span>
+          <input class="mp-input" value="60000" readonly>
+          <span class="mp-unit">ms</span>
+        </div>
+        <div class="mp-actions">
+          <button class="mp-btn-start" id="r-start-btn" onclick="toggleRefresher()">▶ START</button>
+          <button class="mp-btn-stop" id="r-stop-btn" onclick="toggleRefresher()">■ STOP</button>
+        </div>
+        <div class="mp-stats">
+          <div class="mp-stat"><span class="mp-stat-val" id="r-clicks">0</span><span class="mp-stat-lbl">Clicks</span></div>
+          <div class="mp-stat"><span class="mp-stat-val" id="r-reloads">0</span><span class="mp-stat-lbl">Reloads</span></div>
+        </div>
+        <div class="mp-log" id="r-log">
+          <div class="log-entry">Panel ready. Configure and press START.</div>
+        </div>
+      </div>
+
+      <!-- MONITOR PANE -->
+      <div class="mp-body" id="pane-monitor" style="display:none;">
+        <div class="mp-status-bar">
+          <div class="mp-dot" id="m-dot"></div>
+          <div class="mp-status-text">Status: <span id="m-status-txt">Idle</span></div>
+          <div style="font-size:9px;color:#3a3060;">Seen: <span id="m-seen" style="color:#7060a0;font-weight:700;">0</span></div>
+        </div>
+        <div class="mp-section-title">Settings</div>
+        <div class="mp-row"><span class="mp-label">Category</span><select class="mp-select"><option>Collectibles</option><option>Featured</option></select></div>
+        <div class="mp-row"><span class="mp-label">Poll interval</span><input class="mp-input" value="15" readonly><span class="mp-unit">sec</span></div>
+        <div class="mp-section-title">Filters</div>
+        <div class="mp-row"><span class="mp-label">Notify on limited items</span><input type="checkbox" checked onclick="return false;" style="pointer-events:none;accent-color:#a855f7;"></div>
+        <div class="mp-row"><span class="mp-label">Skip decoy items</span><input type="checkbox" checked onclick="return false;" style="pointer-events:none;accent-color:#a855f7;"></div>
+        <div class="mp-actions" style="margin-top:14px;">
+          <button class="mp-btn-start" onclick="toggleMonitor()">▶ START</button>
+          <button class="mp-btn-stop" id="m-stop-btn" onclick="toggleMonitor()">■ STOP</button>
+        </div>
+        <div class="mp-log" id="m-log">
+          <div class="log-entry">Monitor idle. Press START to begin watching.</div>
+        </div>
+      </div>
+
+      <!-- THEMES PANE -->
+      <div class="mp-body" id="pane-themes" style="display:none;">
+        <div class="mp-section-title">Theme</div>
+        <div class="mp-theme-grid" id="theme-grid"></div>
+        <div class="mp-section-title" style="margin-top:14px;">GUI Scale</div>
+        <div class="mp-row"><span class="mp-label">Panel scale</span><input class="mp-input" value="100" readonly><span class="mp-unit">%</span></div>
+        <div class="mp-section-title">Notifications</div>
+        <div class="mp-row"><span class="mp-label">Show notifications</span><input type="checkbox" checked onclick="return false;" style="pointer-events:none;accent-color:#a855f7;"></div>
+        <div class="mp-row"><span class="mp-label">Duration</span><input class="mp-input" value="5000" readonly><span class="mp-unit">ms</span></div>
+      </div>
+
+      <!-- MISC PANE -->
+      <div class="mp-body" id="pane-misc" style="display:none;">
+        <div class="mp-section-title">Sidebar Style</div>
+        <div class="mp-row"><span class="mp-label">Enable sidebar styling</span><input type="checkbox" onclick="return false;" style="pointer-events:none;accent-color:#a855f7;"></div>
+        <div class="mp-section-title">Background Image</div>
+        <div style="background:#13111e;border:1px solid #1e1a30;border-radius:5px;padding:6px 10px;font-size:10px;color:#3a3060;margin-bottom:8px;">https://i.imgur.com/… (press Enter)</div>
+        <div class="mp-section-title">Other</div>
+        <div class="mp-row"><span class="mp-label">Hide ads</span><input type="checkbox" checked onclick="return false;" style="pointer-events:none;accent-color:#a855f7;"></div>
+        <div class="mp-row"><span class="mp-label">Transparent footer</span><input type="checkbox" onclick="return false;" style="pointer-events:none;accent-color:#a855f7;"></div>
+        <div class="mp-section-title">Watermark</div>
+        <div class="mp-row"><span class="mp-label">Show watermark</span><input type="checkbox" checked onclick="return false;" style="pointer-events:none;accent-color:#a855f7;"></div>
+        <div class="mp-row"><span class="mp-label">Show ping</span><input type="checkbox" checked onclick="return false;" style="pointer-events:none;accent-color:#a855f7;"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- THEMES SECTION -->
+<section id="themes">
+  <div class="eyebrow">// Themes</div>
+  <h2 class="section-title">Pick your palette</h2>
+  <p class="section-sub">All themes apply instantly — no reload needed.</p>
+  <div class="themes-grid">
+    <div class="theme-swatch active" style="background:#0f0f0f;color:#8cff00;" onclick="selectTheme(this,'Skeet','#8cff00')">
+      <div class="swatch-dot" style="background:#8cff00;box-shadow:0 0 10px #8cff0066;"></div>
+      <span class="swatch-name">Skeet</span>
+    </div>
+    <div class="theme-swatch" style="background:#0e0d13;color:#c084fc;" onclick="selectTheme(this,'Void','#c084fc')">
+      <div class="swatch-dot" style="background:#c084fc;box-shadow:0 0 10px #c084fc66;"></div>
+      <span class="swatch-name">Void</span>
+    </div>
+    <div class="theme-swatch" style="background:#0d0b0b;color:#ff4466;" onclick="selectTheme(this,'Crimson','#ff4466')">
+      <div class="swatch-dot" style="background:#ff4466;box-shadow:0 0 10px #ff446666;"></div>
+      <span class="swatch-name">Crimson</span>
+    </div>
+    <div class="theme-swatch" style="background:#0a0c10;color:#38bdf8;" onclick="selectTheme(this,'Arctic','#38bdf8')">
+      <div class="swatch-dot" style="background:#38bdf8;box-shadow:0 0 10px #38bdf866;"></div>
+      <span class="swatch-name">Arctic</span>
+    </div>
+    <div class="theme-swatch" style="background:#090909;color:#f0a500;" onclick="selectTheme(this,'Gold','#f0a500')">
+      <div class="swatch-dot" style="background:#f0a500;box-shadow:0 0 10px #f0a50066;"></div>
+      <span class="swatch-name">Gold</span>
+    </div>
+    <div class="theme-swatch" style="background:#050a05;color:#00ff41;" onclick="selectTheme(this,'Matrix','#00ff41')">
+      <div class="swatch-dot" style="background:#00ff41;box-shadow:0 0 10px #00ff4166;"></div>
+      <span class="swatch-name">Matrix</span>
+    </div>
+  </div>
+  <div class="theme-preview">
+    Selected: <span id="theme-name" style="color:#8cff00;font-weight:700;">Skeet</span> — accent <span id="theme-accent" style="color:#8cff00;font-weight:700;">#8cff00</span>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- CHANGELOG -->
+<section id="changelog">
+  <div class="eyebrow">// Changelog</div>
+  <h2 class="section-title">What's new</h2>
+  <p class="section-sub">Version history and release notes.</p>
+  <div class="changelog">
+    <div class="changelog-item">
+      <div>
+        <div class="changelog-ver">v1.0.0</div>
+        <div class="changelog-date">Current</div>
+      </div>
+      <ul class="changelog-entries">
+        <li><span class="tag-new">NEW</span>Custom trade window with Koromons value integration</li>
+        <li><span class="tag-new">NEW</span>Mass trader — blast and custom modes</li>
+        <li><span class="tag-new">NEW</span>Item monitor with Discord webhook support</li>
+        <li><span class="tag-new">NEW</span>Six themes with live switching</li>
+        <li><span class="tag-new">NEW</span>Draggable watermark HUD with ping display</li>
+        <li><span class="tag-new">NEW</span>Full trade history viewer with accept/decline</li>
+        <li><span class="tag-new">NEW</span>GitHub loader architecture — instant updates</li>
+      </ul>
+    </div>
+    <div class="changelog-item">
+      <div>
+        <div class="changelog-ver">Planned</div>
+        <div class="changelog-date">Coming soon</div>
+      </div>
+      <ul class="changelog-entries">
+        <li><span class="tag-soon">SOON</span>Trade value alerts via notification</li>
+        <li><span class="tag-soon">SOON</span>Inventory value calculator</li>
+        <li><span class="tag-soon">SOON</span>Auto-accept / auto-decline rules</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-left">HEXIUM [BETA] · <span>@CardCounting</span></div>
+  <ul class="footer-links">
+    <li><a href="https://github.com/kk8g/Hexium" target="_blank">GitHub</a></li>
+    <li><a href="https://www.pekora.zip" target="_blank">Pekora</a></li>
+    <li><a href="https://www.tampermonkey.net/" target="_blank">Tampermonkey</a></li>
+  </ul>
+</footer>
+
+<!-- INSTALL MODAL -->
+<div class="modal-overlay" id="install-modal" onclick="if(event.target===this)this.classList.remove('open')">
+  <div class="modal">
+    <div class="modal-topbar"></div>
+    <div class="modal-header">
+      <span class="modal-title">// Install Hexium</span>
+      <button class="modal-close" onclick="document.getElementById('install-modal').classList.remove('open')">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="code-card" style="margin-bottom:18px;">
+        <div class="code-card-header">
+          <div class="code-card-title"><div class="code-card-dots"><span class="dot-r"></span><span class="dot-y"></span><span class="dot-g"></span></div>loader.user.js</div>
+          <button class="copy-btn" onclick="copyLoader(true)">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+            Copy all
+          </button>
+        </div>
+        <div class="code-area" id="modal-code"></div>
+      </div>
+      <div class="steps">
+        <div class="step"><div class="step-num"><span>1</span></div><div><h3>Copy the script above</h3><p>Click "Copy all" or select all text in the code box.</p></div></div>
+        <div class="step"><div class="step-num"><span>2</span></div><div><h3>Open Tampermonkey → New script</h3><p>Click the Tampermonkey icon → Dashboard → + New script.</p></div></div>
+        <div class="step"><div class="step-num"><span>3</span></div><div><h3>Paste and save</h3><p>Select all and paste, then Ctrl+S to save.</p></div></div>
+        <div class="step"><div class="step-num"><span>4</span></div><div><h3>Allow the permission prompt</h3><p>When Tampermonkey asks to allow <code style="color:#a855f7;font-size:11px;">raw.githubusercontent.com</code>, click Allow.</p></div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"><div class="toast-dot"></div><span id="toast-msg">Copied to clipboard</span></div>
+
+<script>
+const LOADER_CODE = `// ==UserScript==
+// @name         Hexium / beta
+// @namespace    http://tampermonkey.net/
+// @version      1.0.0
+// @description  Hexium Suite loader
+// @author       @CardCounting
+// @match        https://www.pekora.zip/*
+// @grant        GM_setValue
+// @grant        GM_getValue
+// @grant        GM_xmlhttpRequest
+// @connect      raw.githubusercontent.com
+// @run-at       document-end
+// ==/UserScript==
+
+(function () {
+  'use strict';
+  GM_xmlhttpRequest({
+    method: 'GET',
+    url: 'https://raw.githubusercontent.com/kk8g/Hexium/refs/heads/main/src.js',
+    onload(res) {
+      window._hx_set = GM_setValue;
+      window._hx_get = GM_getValue;
+      const script = document.createElement('script');
+      script.textContent = res.responseText;
+      document.head.appendChild(script);
+    },
+    onerror(err) {
+      console.error('[Hexium] Failed to load:', err);
+    }
+  });
+})();`;
+
+function syntaxHighlight(code) {
+  return code
+    .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+    .replace(/(\/\/[^\n]*)/g, '<span class="code-cm">$1</span>')
+    .replace(/\b(const|let|var|function|return|new|this|async|await|true|false|null)\b/g, '<span class="code-kw">$1</span>')
+    .replace(/'([^']*)'/g, "<span class='code-str'>'$1'</span>")
+    .replace(/\b(\d+)\b/g, '<span class="code-num">$1</span>');
+}
+
+const highlighted = syntaxHighlight(LOADER_CODE);
+document.getElementById('loader-code').innerHTML = highlighted;
+document.getElementById('modal-code').innerHTML = highlighted;
+
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  document.getElementById('toast-msg').textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2200);
+}
+
+function copyLoader(fromModal) {
+  navigator.clipboard.writeText(LOADER_CODE).then(() => {
+    showToast('Copied to clipboard');
+    if (!fromModal) {
+      const btn = document.getElementById('copy-loader-btn');
+      btn.classList.add('copied');
+      btn.innerHTML = '✓ Copied';
+      setTimeout(() => {
+        btn.classList.remove('copied');
+        btn.innerHTML = '<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>Copy';
+      }, 2000);
+    }
+  });
+}
+
+function selectTheme(el, name, accent) {
+  document.querySelectorAll('.theme-swatch').forEach(s => s.classList.remove('active'));
+  el.classList.add('active');
+  document.getElementById('theme-name').textContent = name;
+  document.getElementById('theme-name').style.color = accent;
+  document.getElementById('theme-accent').textContent = accent;
+  document.getElementById('theme-accent').style.color = accent;
+}
+
+// Panel preview interactivity
+let rRunning = false, rClicks = 0, rReloads = 0, rTimer = null;
+let mRunning = false, mSeen = 0, mTimer = null;
+
+function switchTab(tab, el) {
+  document.querySelectorAll('.mp-tab').forEach(t => t.classList.remove('active'));
+  el.classList.add('active');
+  ['refresher','monitor','themes','misc'].forEach(p => {
+    document.getElementById('pane-' + p).style.display = p === tab ? 'block' : 'none';
+  });
+}
+
+function toggleRefresher() {
+  rRunning = !rRunning;
+  const dot = document.getElementById('r-dot');
+  const statusTxt = document.getElementById('r-status-txt');
+  const startBtn = document.getElementById('r-start-btn');
+  const stopBtn  = document.getElementById('r-stop-btn');
+  const log      = document.getElementById('r-log');
+  if (rRunning) {
+    dot.classList.add('on');
+    statusTxt.textContent = 'Running';
+    startBtn.style.opacity = '0.4';
+    stopBtn.classList.add('active');
+    const ts = () => new Date().toTimeString().slice(0,8);
+    addLog(log, `[${ts()}] Started — click 1500ms, reload 60s`, '#a855f7');
+    rTimer = setInterval(() => {
+      rClicks++;
+      document.getElementById('r-clicks').textContent = rClicks;
+      addLog(log, `[${ts()}] Click #${rClicks}`, '#a855f7');
+    }, 2000);
+  } else {
+    dot.classList.remove('on');
+    statusTxt.textContent = 'Idle';
+    startBtn.style.opacity = '1';
+    stopBtn.classList.remove('active');
+    clearInterval(rTimer);
+    addLog(document.getElementById('r-log'), 'Stopped.', '#5a5080');
+  }
+}
+
+function toggleMonitor() {
+  mRunning = !mRunning;
+  const dot = document.getElementById('m-dot');
+  const statusTxt = document.getElementById('m-status-txt');
+  const stopBtn   = document.getElementById('m-stop-btn');
+  const log       = document.getElementById('m-log');
+  const ts = () => new Date().toTimeString().slice(0,8);
+  if (mRunning) {
+    dot.style.background = '#a855f7';
+    dot.style.boxShadow  = '0 0 8px #a855f7';
+    statusTxt.textContent = 'Watching';
+    stopBtn.classList.add('active');
+    addLog(log, `[${ts()}] Monitor started — polling every 15s`, '#7060a0');
+    mTimer = setInterval(() => {
+      mSeen += Math.floor(Math.random() * 3) + 1;
+      document.getElementById('m-seen').textContent = mSeen;
+      addLog(log, `[${ts()}] Poll — no new items (${mSeen} tracked)`, '#5a5080');
+    }, 3000);
+  } else {
+    dot.style.background = '#2e2850';
+    dot.style.boxShadow  = 'none';
+    statusTxt.textContent = 'Idle';
+    stopBtn.classList.remove('active');
+    clearInterval(mTimer);
+    addLog(log, 'Monitor stopped.', '#5a5080');
+  }
+}
+
+function addLog(el, msg, color) {
+  const d = document.createElement('div');
+  d.className = 'log-entry';
+  d.style.color = color;
+  d.textContent = msg;
+  el.appendChild(d);
+  el.scrollTop = el.scrollHeight;
+}
+
+// Build mock theme grid
+const THEMES = [
+  { name:'Skeet',   accent:'#8cff00', bg:'#0f0f0f' },
+  { name:'Void',    accent:'#c084fc', bg:'#0e0d13' },
+  { name:'Crimson', accent:'#ff4466', bg:'#0d0b0b' },
+  { name:'Arctic',  accent:'#38bdf8', bg:'#0a0c10' },
+  { name:'Gold',    accent:'#f0a500', bg:'#090909' },
+  { name:'Matrix',  accent:'#00ff41', bg:'#050a05' },
+];
+
+let activeTheme = 1;
+const tgrid = document.getElementById('theme-grid');
+THEMES.forEach((t, i) => {
+  const btn = document.createElement('button');
+  btn.className = 'mp-theme-btn' + (i === activeTheme ? ' active' : '');
+  btn.style.color = i === activeTheme ? t.accent : '#7060a0';
+  btn.innerHTML = `<span class="t-dot" style="background:${t.accent};box-shadow:0 0 5px ${t.accent}88;"></span>${t.name}`;
+  btn.addEventListener('click', () => {
+    activeTheme = i;
+    tgrid.querySelectorAll('.mp-theme-btn').forEach((b, j) => {
+      b.classList.toggle('active', j === i);
+      b.style.color = j === i ? THEMES[j].accent : '#7060a0';
+    });
+  });
+  tgrid.appendChild(btn);
+});
+</script>
+</body>
+</html>
