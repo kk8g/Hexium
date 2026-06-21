@@ -1,4 +1,4 @@
-# Hexium
+# Hexium / https://discord.gg/wUtR45UuX4
 
 A **Pekora / Korone extension** — a Tampermonkey userscript that enhances your experience on [pekora.zip](https://www.pekora.zip) with custom themes, a frosted-glass redesign, item notifications, and quality-of-life tweaks across the site.
 
