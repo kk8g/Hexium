@@ -894,25 +894,7 @@ section {
 .mp-theme-btn.active { border-color: #a855f7; background: rgba(168,85,247,0.1); color: #a855f7; }
 .mp-theme-btn:hover:not(.active) { border-color: #2c2640; background: #16132a; }
 
-/* TRADE / LARP mock bits */
-.mt-subtabs { display: flex; border-bottom: 1px solid #1e1a30; margin-bottom: 12px; }
-.mt-subtab {
-  flex: 1; text-align: center; padding: 8px;
-  font-size: 9px; font-weight: 700; letter-spacing: 0.08em;
-  color: #5a5080; cursor: pointer;
-  border-bottom: 2px solid transparent; transition: color 0.15s, border-color 0.15s;
-}
-.mt-subtab.active { color: #a855f7; border-bottom-color: #a855f7; }
-.mt-subtab:hover:not(.active) { color: #7060a0; }
-
-.mp-btn-load {
-  all: unset; box-sizing: border-box; width: 100%; text-align: center;
-  padding: 7px; margin-bottom: 8px;
-  background: #13111e; border: 1px solid #1e1a30; border-radius: 6px;
-  font-size: 10px; font-weight: 600; color: #b0a0d0; cursor: pointer; transition: all 0.15s;
-}
-.mp-btn-load:hover { border-color: #2c2640; background: #16132a; color: #d8c8f5; }
-
+/* LARP / mock bits */
 .mp-btn-mini {
   all: unset; padding: 0 12px; display: flex; align-items: center;
   background: #13111e; border: 1px solid #1e1a30; border-radius: 6px;
@@ -930,27 +912,6 @@ section {
   background: linear-gradient(135deg, rgba(168,85,247,0.12), rgba(236,72,153,0.06));
 }
 .mt-slot-rap { font-size: 8px; font-weight: 800; color: #c4a0f5; letter-spacing: 0.04em; }
-
-.mt-owner-info { font-size: 9.5px; color: #6a5fa0; margin: 4px 0 4px; min-height: 13px; }
-
-.mt-delay-row { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; }
-.mt-delay-row .mp-label { flex: 0 0 auto; }
-.mt-step {
-  all: unset; width: 22px; height: 22px; text-align: center; line-height: 22px;
-  background: #13111e; border: 1px solid #1e1a30; border-radius: 5px; color: #c4b0e8; cursor: pointer; font-size: 13px; transition: all 0.15s;
-}
-.mt-step:hover { border-color: #a855f7; color: #fff; }
-.mt-delay-val { font-size: 11px; font-weight: 800; color: #e8e2f5; min-width: 38px; text-align: center; }
-
-.mp-progress-wrap { height: 4px; background: #13111e; border-radius: 2px; overflow: hidden; margin: 4px 0 8px; }
-.mp-progress-bar { height: 100%; width: 0%; background: var(--grad); border-radius: 2px; transition: width 0.3s; }
-
-.mt-targets { display: flex; flex-direction: column; gap: 5px; }
-.mt-target {
-  display: flex; justify-content: space-between; align-items: center;
-  padding: 6px 9px; background: #100e1a; border: 1px solid #1e1a30; border-radius: 6px; font-size: 10px; color: #c8bce8;
-}
-.mt-target-asset { font-size: 9px; color: #6a5fa0; font-weight: 700; }
 
 .mt-note { font-size: 9px; line-height: 1.7; color: #5a5080; background: #100e1a; border: 1px solid #1e1a30; border-radius: 6px; padding: 8px 10px; margin-top: 8px; }
 
@@ -1223,8 +1184,8 @@ footer {
     <img src="hexium-logo.png" alt="Hexium" class="hero-logo">
   </div>
   <div class="hero-badge"><div class="hero-badge-dot"></div>BETA — Active Development</div>
-  <h1>Trade smarter<br>on <span class="grad-text">Pekora</span></h1>
-  <p>A Tampermonkey suite that supercharges your Pekora trading experience — item monitoring, mass trading, custom themes, and more.</p>
+  <h1>Enhance your<br><span class="grad-text">Pekora</span> experience</h1>
+  <p>A Tampermonkey suite that supercharges Pekora with custom themes, glass redesigns, item notifications, and quality-of-life tweaks across every page.</p>
   <div class="hero-actions">
     <button class="btn-primary" onclick="document.getElementById('install-modal').classList.add('open')">
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
@@ -1300,19 +1261,19 @@ footer {
 <!-- FEATURES -->
 <section id="features">
   <div class="eyebrow">// Features</div>
-  <h2 class="section-title">Everything you need<br>to trade smarter</h2>
-  <p class="section-sub">Built specifically for the Pekora ecosystem with real-time market data from Koromons.</p>
+  <h2 class="section-title">Everything you need<br>to make it yours</h2>
+  <p class="section-sub">Themes, glass redesigns, notifications, and quality-of-life tweaks across every page of Pekora.</p>
 
   <div class="features-grid">
     <div class="feature-card">
-      <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 16V4L3 8m4-4l4 4M17 8v12l4-4m-4 4l-4-4"/></svg></div>
-      <h3>Trade Window</h3>
-      <p>A fully custom trade UI with inventory browsing, search, sorting, and live value analytics powered by Koromons data.</p>
+      <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M3 9h18"/><path d="M9 21V9"/></svg></div>
+      <h3>Glass Redesign</h3>
+      <p>A modern frosted-glass restyle of the catalog, games, message, and profile pages — blurred frames, soft borders, and glow accents.</p>
     </div>
     <div class="feature-card">
-      <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h7"/></svg></div>
-      <h3>Mass Trader</h3>
-      <p>Blast trades to all owners of a target item, or build a custom target list with specific items per user — fully automated.</p>
+      <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="4" y1="6" x2="20" y2="6"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="18" x2="20" y2="18"/><circle cx="9" cy="6" r="1.4" fill="currentColor"/><circle cx="15" cy="12" r="1.4" fill="currentColor"/><circle cx="9" cy="18" r="1.4" fill="currentColor"/></svg></div>
+      <h3>Quick Nav</h3>
+      <p>Handy shortcuts injected straight into the sidebar so the pages you use most are always one click away.</p>
     </div>
     <div class="feature-card">
       <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg></div>
@@ -1320,9 +1281,9 @@ footer {
       <p>Polls the catalog on a custom interval and fires notifications plus Discord webhooks when new limited items drop.</p>
     </div>
     <div class="feature-card">
-      <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
-      <h3>Trade History</h3>
-      <p>View all inbound and outbound trades with full item details, value diffs, and accept/decline directly from the modal.</p>
+      <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M20 12v6a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h6"/><path d="M3 16l5-5 4 4 5-6 4 5"/></svg></div>
+      <h3>Background Effects</h3>
+      <p>Rain, snow, stars, or matrix effects plus custom background images and blur — make every page feel like yours.</p>
     </div>
     <div class="feature-card">
       <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 2a10 10 0 1 0 10 10"/><polyline points="12 6 12 12 16 14"/></svg></div>
@@ -1356,11 +1317,11 @@ footer {
       <div class="eyebrow">// Live Preview</div>
       <h2 class="section-title">See it in action</h2>
       <p>An interactive mockup of the Hexium panel — click tabs to switch views, toggle the refresher, and explore the theme selector. This is exactly what you'll see on Pekora.</p>
-      <p>The real panel includes live inventory data, Koromons value lookups, and full trade functionality.</p>
+      <p>The real panel includes live theme switching, page customisation, and quality-of-life tools across the site.</p>
       <div class="tags-wrap">
         <span class="feature-tag"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 2a10 10 0 1 0 10 10"/><polyline points="12 6 12 12 16 14"/></svg> Auto Refresher</span>
         <span class="feature-tag"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg> Item Monitor</span>
-        <span class="feature-tag"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M7 16V4L3 8m4-4l4 4M17 8v12l4-4"/></svg> Mass Trader</span>
+        <span class="feature-tag"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M3 9h18M9 21V9"/></svg> Page Customiser</span>
         <span class="feature-tag"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4"/></svg> 6 Themes</span>
       </div>
     </div>
@@ -1389,7 +1350,6 @@ footer {
       <div class="mp-tabs">
         <div class="mp-tab active" onclick="switchTab('refresher', this)">⟳ REFRESH</div>
         <div class="mp-tab" onclick="switchTab('monitor', this)">◉ MON</div>
-        <div class="mp-tab" onclick="switchTab('trade', this)">⇄ TRADE</div>
         <div class="mp-tab" onclick="switchTab('larp', this)">▭ LARP</div>
         <div class="mp-tab" onclick="switchTab('misc', this)">⊞ MISC</div>
         <div class="mp-tab" onclick="switchTab('themes', this)">✦ CFG</div>
@@ -1443,59 +1403,6 @@ footer {
         </div>
         <div class="mp-log" id="m-log">
           <div class="log-entry">Monitor idle. Press START to begin watching.</div>
-        </div>
-      </div>
-
-      <!-- TRADE PANE (Mass Trader) -->
-      <div class="mp-body" id="pane-trade" style="display:none;">
-        <div class="mt-subtabs">
-          <div class="mt-subtab active" onclick="switchMtMode('blast', this)">BLAST OWNERS</div>
-          <div class="mt-subtab" onclick="switchMtMode('custom', this)">CUSTOM</div>
-        </div>
-        <!-- blast mode -->
-        <div id="mt-mode-blast">
-          <div class="mp-section-title">1. Your Items (max 4)</div>
-          <button class="mp-btn-load">Load My Inventory</button>
-          <div class="mt-item-grid">
-            <div class="mt-slot filled"><span class="mt-slot-rap">12K</span></div>
-            <div class="mt-slot filled"><span class="mt-slot-rap">8.4K</span></div>
-            <div class="mt-slot"></div>
-            <div class="mt-slot"></div>
-          </div>
-          <div class="mp-section-title">2. Target Item (Asset ID)</div>
-          <div class="mp-row" style="gap:6px;">
-            <input class="mp-input" value="34380" readonly style="flex:1;width:auto;">
-            <button class="mp-btn-mini" onclick="mockFindOwners(this)">Find Owners</button>
-          </div>
-          <div class="mt-owner-info" id="mt-owner-info">140 owners found · 132 with open trades</div>
-          <div class="mp-section-title">3. Send</div>
-          <div class="mt-delay-row">
-            <span class="mp-label">Delay</span>
-            <button class="mt-step">−</button>
-            <span class="mt-delay-val">20s</span>
-            <button class="mt-step">+</button>
-          </div>
-          <div class="mp-actions">
-            <button class="mp-btn-start" onclick="toggleBlast()" id="mt-blast-btn">▶ Send to All Owners</button>
-          </div>
-          <div class="mp-progress-wrap" id="mt-prog-wrap" style="display:none;"><div class="mp-progress-bar" id="mt-prog-bar"></div></div>
-          <div class="mp-log" id="mt-blast-log"><div class="log-entry">Load items, set a target, then send.</div></div>
-        </div>
-        <!-- custom mode -->
-        <div id="mt-mode-custom" style="display:none;">
-          <div class="mp-section-title">1. Your Items (max 4)</div>
-          <button class="mp-btn-load">Load My Inventory</button>
-          <div class="mp-section-title">2. Add Targets</div>
-          <div class="mp-row" style="gap:5px;">
-            <input class="mp-input" value="" placeholder="Username or ID" readonly style="flex:1;width:auto;">
-            <input class="mp-input" value="" placeholder="Asset" readonly style="width:64px;">
-            <button class="mp-btn-mini">Add</button>
-          </div>
-          <div class="mt-targets">
-            <div class="mt-target"><span>@Worship</span><span class="mt-target-asset">#34380</span></div>
-            <div class="mt-target"><span>@Model</span><span class="mt-target-asset">#1029</span></div>
-          </div>
-          <div class="mp-actions" style="margin-top:10px;"><button class="mp-btn-start">▶ Send All Trades</button></div>
         </div>
       </div>
 
@@ -1618,12 +1525,12 @@ footer {
         <div class="changelog-date">Current</div>
       </div>
       <ul class="changelog-entries">
-        <li><span class="tag-new">NEW</span>Custom trade window with Koromons value integration</li>
-        <li><span class="tag-new">NEW</span>Mass trader — blast and custom modes</li>
+        <li><span class="tag-new">NEW</span>Frosted-glass redesign for catalog, games & messages</li>
         <li><span class="tag-new">NEW</span>Item monitor with Discord webhook support</li>
         <li><span class="tag-new">NEW</span>Six themes with live switching</li>
+        <li><span class="tag-new">NEW</span>Native sidebar shortcuts + full page customiser</li>
         <li><span class="tag-new">NEW</span>Draggable watermark HUD with ping display</li>
-        <li><span class="tag-new">NEW</span>Full trade history viewer with accept/decline</li>
+        <li><span class="tag-new">NEW</span>Background effects — rain, snow, stars & matrix</li>
         <li><span class="tag-new">NEW</span>GitHub loader architecture — instant updates</li>
       </ul>
     </div>
@@ -1633,9 +1540,9 @@ footer {
         <div class="changelog-date">Coming soon</div>
       </div>
       <ul class="changelog-entries">
-        <li><span class="tag-soon">SOON</span>Trade value alerts via notification</li>
-        <li><span class="tag-soon">SOON</span>Inventory value calculator</li>
-        <li><span class="tag-soon">SOON</span>Auto-accept / auto-decline rules</li>
+        <li><span class="tag-soon">SOON</span>More themes & saved config presets</li>
+        <li><span class="tag-soon">SOON</span>Per-page layout options</li>
+        <li><span class="tag-soon">SOON</span>Additional background effects</li>
       </ul>
     </div>
   </div>
@@ -1694,8 +1601,10 @@ const LOADER_CODE = `// ==UserScript==
 // @description  Hexium Suite loader
 // @author       @CardCounting
 // @match        https://www.pekora.zip/*
-// @grant        GM_setValue
 // @grant        GM_getValue
+// @grant        GM_setValue
+// @grant        GM_deleteValue
+// @grant        GM_listValues
 // @grant        GM_xmlhttpRequest
 // @connect      raw.githubusercontent.com
 // @run-at       document-end
@@ -1705,16 +1614,21 @@ const LOADER_CODE = `// ==UserScript==
   'use strict';
   GM_xmlhttpRequest({
     method: 'GET',
-    url: 'https://raw.githubusercontent.com/kk8g/Hexium/refs/heads/main/src.js',
+    url: 'https://raw.githubusercontent.com/kk8g/Hexium/refs/heads/main/src.js?t=' + Date.now(),
+    headers: { 'Cache-Control': 'no-cache', 'Pragma': 'no-cache' },
     onload(res) {
-      window._hx_set = GM_setValue;
-      window._hx_get = GM_getValue;
-      const script = document.createElement('script');
-      script.textContent = res.responseText;
-      document.head.appendChild(script);
+      if (res.status < 200 || res.status >= 300) {
+        console.error('[Hexium] Failed to fetch source:', res.status);
+        return;
+      }
+      try {
+        eval(res.responseText);
+      } catch (e) {
+        console.error('[Hexium] Error running source:', e);
+      }
     },
     onerror(err) {
-      console.error('[Hexium] Failed to load:', err);
+      console.error('[Hexium] Network error loading source:', err);
     }
   });
 })();`;
@@ -1770,58 +1684,9 @@ let mRunning = false, mSeen = 0, mTimer = null;
 function switchTab(tab, el) {
   document.querySelectorAll('.mp-tab').forEach(t => t.classList.remove('active'));
   el.classList.add('active');
-  ['refresher','monitor','trade','larp','misc','themes'].forEach(p => {
+  ['refresher','monitor','larp','misc','themes'].forEach(p => {
     document.getElementById('pane-' + p).style.display = p === tab ? 'block' : 'none';
   });
-}
-
-// Mass Trader mock — sub-mode switching
-function switchMtMode(mode, el) {
-  document.querySelectorAll('.mt-subtab').forEach(t => t.classList.remove('active'));
-  el.classList.add('active');
-  document.getElementById('mt-mode-blast').style.display  = mode === 'blast'  ? 'block' : 'none';
-  document.getElementById('mt-mode-custom').style.display = mode === 'custom' ? 'block' : 'none';
-}
-
-function mockFindOwners(btn) {
-  const info = document.getElementById('mt-owner-info');
-  info.textContent = 'Searching owners…';
-  setTimeout(() => { info.textContent = '140 owners found · 132 with open trades'; }, 700);
-}
-
-let blastRunning = false, blastTimer = null;
-function toggleBlast() {
-  const btn = document.getElementById('mt-blast-btn');
-  const wrap = document.getElementById('mt-prog-wrap');
-  const bar = document.getElementById('mt-prog-bar');
-  const log = document.getElementById('mt-blast-log');
-  blastRunning = !blastRunning;
-  if (blastRunning) {
-    btn.textContent = '■ Stop';
-    btn.style.background = '#2a1420';
-    btn.style.color = '#ff4466';
-    wrap.style.display = 'block';
-    let sent = 0; const total = 12;
-    const ts = () => new Date().toTimeString().slice(0,8);
-    addLog(log, `[${ts()}] Blasting 12 owners — delay 20s`, '#a855f7');
-    blastTimer = setInterval(() => {
-      sent++;
-      bar.style.width = (sent / total * 100) + '%';
-      addLog(log, `[${ts()}] Trade sent ${sent}/${total}`, '#a855f7');
-      if (sent >= total) { clearInterval(blastTimer); addLog(log, `[${ts()}] Done — 12 trades sent.`, '#f97316'); resetBlast(); }
-    }, 600);
-  } else {
-    clearInterval(blastTimer);
-    addLog(log, 'Stopped.', '#5a5080');
-    resetBlast();
-  }
-}
-function resetBlast() {
-  blastRunning = false;
-  const btn = document.getElementById('mt-blast-btn');
-  btn.textContent = '▶ Send to All Owners';
-  btn.style.background = '';
-  btn.style.color = '';
 }
 
 function toggleLarp(cb) {
