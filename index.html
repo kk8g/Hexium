@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Hexium.club</title>
+<title>Hexium — Pekora Suite</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Mona+Sans:ital,wdth,wght@0,75..125,200..900;1,75..125,200..900&display=swap" rel="stylesheet">
 <style>
@@ -272,47 +272,6 @@ nav {
 }
 
 .btn-ghost:hover { border-color: #7c3aed; background: rgba(124,58,237,0.08); transform: translateY(-2px); }
-
-/* STATS */
-.stats-row {
-  position: relative;
-  z-index: 1;
-  display: flex;
-  justify-content: center;
-  background: var(--c-surface);
-  border-top: 1px solid var(--c-border);
-  border-bottom: 1px solid var(--c-border);
-}
-
-.stat-item {
-  flex: 1;
-  max-width: 220px;
-  padding: 30px 20px;
-  text-align: center;
-  border-right: 1px solid var(--c-border);
-}
-
-.stat-item:last-child { border-right: none; }
-
-.stat-val {
-  display: block;
-  font-size: 30px;
-  font-weight: 900;
-  font-stretch: 120%;
-  background: var(--grad-text);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  line-height: 1;
-  margin-bottom: 6px;
-}
-
-.stat-lbl {
-  font-size: 11px;
-  color: var(--c-muted);
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  font-weight: 600;
-}
 
 /* SECTION */
 section {
@@ -935,6 +894,81 @@ section {
 .mp-theme-btn.active { border-color: #a855f7; background: rgba(168,85,247,0.1); color: #a855f7; }
 .mp-theme-btn:hover:not(.active) { border-color: #2c2640; background: #16132a; }
 
+/* TRADE / LARP mock bits */
+.mt-subtabs { display: flex; border-bottom: 1px solid #1e1a30; margin-bottom: 12px; }
+.mt-subtab {
+  flex: 1; text-align: center; padding: 8px;
+  font-size: 9px; font-weight: 700; letter-spacing: 0.08em;
+  color: #5a5080; cursor: pointer;
+  border-bottom: 2px solid transparent; transition: color 0.15s, border-color 0.15s;
+}
+.mt-subtab.active { color: #a855f7; border-bottom-color: #a855f7; }
+.mt-subtab:hover:not(.active) { color: #7060a0; }
+
+.mp-btn-load {
+  all: unset; box-sizing: border-box; width: 100%; text-align: center;
+  padding: 7px; margin-bottom: 8px;
+  background: #13111e; border: 1px solid #1e1a30; border-radius: 6px;
+  font-size: 10px; font-weight: 600; color: #b0a0d0; cursor: pointer; transition: all 0.15s;
+}
+.mp-btn-load:hover { border-color: #2c2640; background: #16132a; color: #d8c8f5; }
+
+.mp-btn-mini {
+  all: unset; padding: 0 12px; display: flex; align-items: center;
+  background: #13111e; border: 1px solid #1e1a30; border-radius: 6px;
+  font-size: 9px; font-weight: 700; color: #b0a0d0; cursor: pointer; transition: all 0.15s;
+}
+.mp-btn-mini:hover { border-color: #a855f7; color: #d8c8f5; }
+
+.mt-item-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 6px; margin-bottom: 10px; }
+.mt-slot {
+  aspect-ratio: 1; border-radius: 7px; border: 1px dashed #1e1a30; background: #100e1a;
+  display: flex; align-items: flex-end; justify-content: center; padding-bottom: 4px; position: relative;
+}
+.mt-slot.filled {
+  border: 1px solid rgba(168,85,247,0.4);
+  background: linear-gradient(135deg, rgba(168,85,247,0.12), rgba(236,72,153,0.06));
+}
+.mt-slot-rap { font-size: 8px; font-weight: 800; color: #c4a0f5; letter-spacing: 0.04em; }
+
+.mt-owner-info { font-size: 9.5px; color: #6a5fa0; margin: 4px 0 4px; min-height: 13px; }
+
+.mt-delay-row { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; }
+.mt-delay-row .mp-label { flex: 0 0 auto; }
+.mt-step {
+  all: unset; width: 22px; height: 22px; text-align: center; line-height: 22px;
+  background: #13111e; border: 1px solid #1e1a30; border-radius: 5px; color: #c4b0e8; cursor: pointer; font-size: 13px; transition: all 0.15s;
+}
+.mt-step:hover { border-color: #a855f7; color: #fff; }
+.mt-delay-val { font-size: 11px; font-weight: 800; color: #e8e2f5; min-width: 38px; text-align: center; }
+
+.mp-progress-wrap { height: 4px; background: #13111e; border-radius: 2px; overflow: hidden; margin: 4px 0 8px; }
+.mp-progress-bar { height: 100%; width: 0%; background: var(--grad); border-radius: 2px; transition: width 0.3s; }
+
+.mt-targets { display: flex; flex-direction: column; gap: 5px; }
+.mt-target {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 6px 9px; background: #100e1a; border: 1px solid #1e1a30; border-radius: 6px; font-size: 10px; color: #c8bce8;
+}
+.mt-target-asset { font-size: 9px; color: #6a5fa0; font-weight: 700; }
+
+.mt-note { font-size: 9px; line-height: 1.7; color: #5a5080; background: #100e1a; border: 1px solid #1e1a30; border-radius: 6px; padding: 8px 10px; margin-top: 8px; }
+
+.mp-page-badge {
+  display: inline-block; margin: 12px 0 8px;
+  padding: 3px 9px; border-radius: 5px;
+  font-size: 8.5px; font-weight: 800; letter-spacing: 0.06em;
+  color: #c084fc; background: rgba(168,85,247,0.1); border: 1px solid rgba(168,85,247,0.25);
+}
+.mp-page-badge:first-child { margin-top: 0; }
+
+.mp-mode-pill { display: flex; gap: 3px; }
+.mp-mode-pill button {
+  all: unset; padding: 4px 8px; border-radius: 5px;
+  font-size: 8.5px; font-weight: 700; color: #5a5080; background: #13111e; border: 1px solid #1e1a30; cursor: pointer; transition: all 0.15s;
+}
+.mp-mode-pill button.active { color: #a855f7; border-color: rgba(168,85,247,0.4); background: rgba(168,85,247,0.08); }
+
 /* CHANGELOG */
 .changelog { display: flex; flex-direction: column; }
 
@@ -1074,9 +1108,98 @@ footer {
 
 .toast.show { opacity: 1; transform: translateY(0); }
 .toast-dot { width: 7px; height: 7px; border-radius: 50%; background: #a855f7; flex-shrink: 0; }
+
+/* ── SCROLL PROGRESS BAR ─────────────────────────────────────── */
+.scroll-progress {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  width: 0%;
+  z-index: 200;
+  background: var(--grad);
+  box-shadow: 0 0 10px rgba(168,85,247,0.6);
+  transition: width 0.05s linear;
+}
+
+/* ── NAV active link ─────────────────────────────────────────── */
+.nav-links a.active { color: var(--c-text); }
+.nav-links a { position: relative; }
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  left: 0; bottom: -6px;
+  height: 2px; width: 0%;
+  background: var(--grad);
+  border-radius: 2px;
+  transition: width 0.25s ease;
+}
+.nav-links a:hover::after, .nav-links a.active::after { width: 100%; }
+
+/* ── SCROLL REVEAL ───────────────────────────────────────────── */
+.reveal {
+  opacity: 0;
+  transform: translateY(26px);
+  transition: opacity 0.7s cubic-bezier(0.22,1,0.36,1), transform 0.7s cubic-bezier(0.22,1,0.36,1);
+  will-change: opacity, transform;
+}
+.reveal.in { opacity: 1; transform: translateY(0); }
+.reveal[data-d="1"] { transition-delay: 0.06s; }
+.reveal[data-d="2"] { transition-delay: 0.12s; }
+.reveal[data-d="3"] { transition-delay: 0.18s; }
+.reveal[data-d="4"] { transition-delay: 0.24s; }
+.reveal[data-d="5"] { transition-delay: 0.30s; }
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1; transform: none; transition: none; }
+}
+
+/* ── CURSOR-REACTIVE FEATURE CARDS ───────────────────────────── */
+.feature-card {
+  position: relative;
+  transition: transform 0.18s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+.feature-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  background: radial-gradient(320px circle at var(--mx, 50%) var(--my, 50%), rgba(168,85,247,0.16), transparent 60%);
+  pointer-events: none;
+  z-index: 0;
+}
+.feature-card:hover::before { opacity: 1; }
+.feature-card:hover {
+  border-color: var(--c-border2);
+  box-shadow: 0 18px 50px rgba(0,0,0,0.5), 0 0 0 1px rgba(168,85,247,0.12);
+}
+.feature-card > * { position: relative; z-index: 1; }
+
+/* ── BACK TO TOP ─────────────────────────────────────────────── */
+.to-top {
+  position: fixed;
+  bottom: 24px; left: 24px;
+  z-index: 250;
+  width: 42px; height: 42px;
+  border-radius: 12px;
+  border: 1px solid var(--c-border2);
+  background: rgba(14,12,24,0.82);
+  backdrop-filter: blur(14px);
+  color: var(--c-muted);
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  opacity: 0;
+  transform: translateY(12px) scale(0.9);
+  pointer-events: none;
+  transition: all 0.25s cubic-bezier(0.22,1,0.36,1);
+}
+.to-top.show { opacity: 1; transform: translateY(0) scale(1); pointer-events: auto; }
+.to-top:hover { color: var(--c-text); border-color: var(--sunset-2); box-shadow: 0 0 24px rgba(168,85,247,0.3); transform: translateY(-2px); }
 </style>
 </head>
 <body>
+
+<div class="scroll-progress" id="scroll-progress"></div>
 
 <div class="orb orb-1"></div>
 <div class="orb orb-2"></div>
@@ -1100,7 +1223,7 @@ footer {
     <img src="hexium-logo.png" alt="Hexium" class="hero-logo">
   </div>
   <div class="hero-badge"><div class="hero-badge-dot"></div>BETA — Active Development</div>
-  <h1>Enhance your experience <br>with <span class="grad-text">Hexium</span></h1>
+  <h1>Trade smarter<br>on <span class="grad-text">Pekora</span></h1>
   <p>A Tampermonkey suite that supercharges your Pekora trading experience — item monitoring, mass trading, custom themes, and more.</p>
   <div class="hero-actions">
     <button class="btn-primary" onclick="document.getElementById('install-modal').classList.add('open')">
@@ -1116,14 +1239,6 @@ footer {
       Live Preview
     </a>
   </div>
-</div>
-
-<!-- STATS -->
-<div class="stats-row">
-  <div class="stat-item"><span class="stat-val">6</span><span class="stat-lbl">Themes</span></div>
-  <div class="stat-item"><span class="stat-val">4</span><span class="stat-lbl">Trade Slots</span></div>
-  <div class="stat-item"><span class="stat-val">5s</span><span class="stat-lbl">Poll Interval</span></div>
-  <div class="stat-item"><span class="stat-val">∞</span><span class="stat-lbl">Blast Targets</span></div>
 </div>
 
 <!-- INSTALL -->
@@ -1274,8 +1389,10 @@ footer {
       <div class="mp-tabs">
         <div class="mp-tab active" onclick="switchTab('refresher', this)">⟳ REFRESH</div>
         <div class="mp-tab" onclick="switchTab('monitor', this)">◉ MON</div>
-        <div class="mp-tab" onclick="switchTab('themes', this)">✦ CFG</div>
+        <div class="mp-tab" onclick="switchTab('trade', this)">⇄ TRADE</div>
+        <div class="mp-tab" onclick="switchTab('larp', this)">▭ LARP</div>
         <div class="mp-tab" onclick="switchTab('misc', this)">⊞ MISC</div>
+        <div class="mp-tab" onclick="switchTab('themes', this)">✦ CFG</div>
       </div>
 
       <!-- REFRESHER PANE -->
@@ -1329,6 +1446,85 @@ footer {
         </div>
       </div>
 
+      <!-- TRADE PANE (Mass Trader) -->
+      <div class="mp-body" id="pane-trade" style="display:none;">
+        <div class="mt-subtabs">
+          <div class="mt-subtab active" onclick="switchMtMode('blast', this)">BLAST OWNERS</div>
+          <div class="mt-subtab" onclick="switchMtMode('custom', this)">CUSTOM</div>
+        </div>
+        <!-- blast mode -->
+        <div id="mt-mode-blast">
+          <div class="mp-section-title">1. Your Items (max 4)</div>
+          <button class="mp-btn-load">Load My Inventory</button>
+          <div class="mt-item-grid">
+            <div class="mt-slot filled"><span class="mt-slot-rap">12K</span></div>
+            <div class="mt-slot filled"><span class="mt-slot-rap">8.4K</span></div>
+            <div class="mt-slot"></div>
+            <div class="mt-slot"></div>
+          </div>
+          <div class="mp-section-title">2. Target Item (Asset ID)</div>
+          <div class="mp-row" style="gap:6px;">
+            <input class="mp-input" value="34380" readonly style="flex:1;width:auto;">
+            <button class="mp-btn-mini" onclick="mockFindOwners(this)">Find Owners</button>
+          </div>
+          <div class="mt-owner-info" id="mt-owner-info">140 owners found · 132 with open trades</div>
+          <div class="mp-section-title">3. Send</div>
+          <div class="mt-delay-row">
+            <span class="mp-label">Delay</span>
+            <button class="mt-step">−</button>
+            <span class="mt-delay-val">20s</span>
+            <button class="mt-step">+</button>
+          </div>
+          <div class="mp-actions">
+            <button class="mp-btn-start" onclick="toggleBlast()" id="mt-blast-btn">▶ Send to All Owners</button>
+          </div>
+          <div class="mp-progress-wrap" id="mt-prog-wrap" style="display:none;"><div class="mp-progress-bar" id="mt-prog-bar"></div></div>
+          <div class="mp-log" id="mt-blast-log"><div class="log-entry">Load items, set a target, then send.</div></div>
+        </div>
+        <!-- custom mode -->
+        <div id="mt-mode-custom" style="display:none;">
+          <div class="mp-section-title">1. Your Items (max 4)</div>
+          <button class="mp-btn-load">Load My Inventory</button>
+          <div class="mp-section-title">2. Add Targets</div>
+          <div class="mp-row" style="gap:5px;">
+            <input class="mp-input" value="" placeholder="Username or ID" readonly style="flex:1;width:auto;">
+            <input class="mp-input" value="" placeholder="Asset" readonly style="width:64px;">
+            <button class="mp-btn-mini">Add</button>
+          </div>
+          <div class="mt-targets">
+            <div class="mt-target"><span>@Worship</span><span class="mt-target-asset">#34380</span></div>
+            <div class="mt-target"><span>@Model</span><span class="mt-target-asset">#1029</span></div>
+          </div>
+          <div class="mp-actions" style="margin-top:10px;"><button class="mp-btn-start">▶ Send All Trades</button></div>
+        </div>
+      </div>
+
+      <!-- LARP PANE -->
+      <div class="mp-body" id="pane-larp" style="display:none;">
+        <div class="mp-status-bar">
+          <div class="mp-dot" id="larp-dot"></div>
+          <div class="mp-status-text">Status: <span id="larp-status-txt">Off</span></div>
+        </div>
+        <div class="mp-section-title">Fake Balance</div>
+        <div class="mp-row"><span class="mp-label">Enable LARP</span><input type="checkbox" id="larp-toggle" onclick="toggleLarp(this)" style="accent-color:#a855f7;cursor:pointer;"></div>
+        <div class="mp-row"><span class="mp-label">Enable fake verify <span style="color:#38bdf8;">✔</span></span><input type="checkbox" onclick="return false;" style="pointer-events:none;accent-color:#a855f7;"></div>
+        <div class="mp-row"><span class="mp-label"><span style="color:#3fb950;font-weight:700;">R$</span> Fake Robux</span><input class="mp-input" value="1,000,000" readonly></div>
+        <div class="mp-row"><span class="mp-label"><span style="color:#f0a500;font-weight:700;">TIX</span> Fake Tix</span><input class="mp-input" value="5,807" readonly></div>
+        <div class="mp-section-title">Fake Items</div>
+        <div class="mp-row" style="gap:6px;">
+          <input class="mp-input" value="" placeholder="Asset ID" readonly style="flex:1;width:auto;">
+          <input class="mp-input" value="1" readonly style="width:42px;">
+          <button class="mp-btn-mini">Add</button>
+        </div>
+        <div class="mt-item-grid" style="margin-top:8px;">
+          <div class="mt-slot filled"><span class="mt-slot-rap">Owned</span></div>
+          <div class="mt-slot filled"><span class="mt-slot-rap">Owned</span></div>
+          <div class="mt-slot"></div>
+          <div class="mt-slot"></div>
+        </div>
+        <div class="mt-note">Each asset shows as <span style="color:#3fb950;">Owned</span> on its catalog page and worn on your <span style="color:#3fb950;">/My/Avatar</span>. Persists across refresh.</div>
+      </div>
+
       <!-- THEMES PANE -->
       <div class="mp-body" id="pane-themes" style="display:none;">
         <div class="mp-section-title">Theme</div>
@@ -1342,14 +1538,27 @@ footer {
 
       <!-- MISC PANE -->
       <div class="mp-body" id="pane-misc" style="display:none;">
+        <div class="mp-page-badge">Universal — all pages</div>
         <div class="mp-section-title">Sidebar Style</div>
         <div class="mp-row"><span class="mp-label">Enable sidebar styling</span><input type="checkbox" onclick="return false;" style="pointer-events:none;accent-color:#a855f7;"></div>
+        <div class="mp-row"><span class="mp-label">Mode</span><div class="mp-mode-pill"><button class="active">Transparent</button><button>Blur</button><button>Colour</button></div></div>
         <div class="mp-section-title">Background Image</div>
         <div style="background:#13111e;border:1px solid #1e1a30;border-radius:5px;padding:6px 10px;font-size:10px;color:#3a3060;margin-bottom:8px;">https://i.imgur.com/… (press Enter)</div>
+        <div class="mp-section-title">Effects</div>
+        <div class="mp-row"><span class="mp-label">Background effect</span><select class="mp-select"><option>None</option><option>Rain</option><option>Snow</option><option>Stars</option><option>Matrix</option></select></div>
         <div class="mp-section-title">Other</div>
         <div class="mp-row"><span class="mp-label">Hide ads</span><input type="checkbox" checked onclick="return false;" style="pointer-events:none;accent-color:#a855f7;"></div>
         <div class="mp-row"><span class="mp-label">Transparent footer</span><input type="checkbox" onclick="return false;" style="pointer-events:none;accent-color:#a855f7;"></div>
-        <div class="mp-section-title">Watermark</div>
+        <div class="mp-section-title">Fonts</div>
+        <div class="mp-row"><span class="mp-label">GUI font</span><select class="mp-select"><option>Share Tech Mono</option><option>Orbitron</option><option>Rajdhani</option></select></div>
+        <div class="mp-page-badge">/games</div>
+        <div class="mp-row"><span class="mp-label">Glassify game page</span><input type="checkbox" checked onclick="return false;" style="pointer-events:none;accent-color:#a855f7;"></div>
+        <div class="mp-row"><span class="mp-label">Hero backdrop</span><input type="checkbox" checked onclick="return false;" style="pointer-events:none;accent-color:#a855f7;"></div>
+        <div class="mp-page-badge">/Catalog.aspx</div>
+        <div class="mp-row"><span class="mp-label">Glassify item cards</span><input type="checkbox" checked onclick="return false;" style="pointer-events:none;accent-color:#a855f7;"></div>
+        <div class="mp-page-badge">/profile</div>
+        <div class="mp-row"><span class="mp-label">Animated username colour</span><input type="checkbox" onclick="return false;" style="pointer-events:none;accent-color:#a855f7;"></div>
+        <div class="mp-page-badge">Watermark</div>
         <div class="mp-row"><span class="mp-label">Show watermark</span><input type="checkbox" checked onclick="return false;" style="pointer-events:none;accent-color:#a855f7;"></div>
         <div class="mp-row"><span class="mp-label">Show ping</span><input type="checkbox" checked onclick="return false;" style="pointer-events:none;accent-color:#a855f7;"></div>
       </div>
@@ -1471,6 +1680,10 @@ footer {
   </div>
 </div>
 
+<button class="to-top" id="to-top" aria-label="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
+</button>
+
 <div class="toast" id="toast"><div class="toast-dot"></div><span id="toast-msg">Copied to clipboard</span></div>
 
 <script>
@@ -1557,9 +1770,70 @@ let mRunning = false, mSeen = 0, mTimer = null;
 function switchTab(tab, el) {
   document.querySelectorAll('.mp-tab').forEach(t => t.classList.remove('active'));
   el.classList.add('active');
-  ['refresher','monitor','themes','misc'].forEach(p => {
+  ['refresher','monitor','trade','larp','misc','themes'].forEach(p => {
     document.getElementById('pane-' + p).style.display = p === tab ? 'block' : 'none';
   });
+}
+
+// Mass Trader mock — sub-mode switching
+function switchMtMode(mode, el) {
+  document.querySelectorAll('.mt-subtab').forEach(t => t.classList.remove('active'));
+  el.classList.add('active');
+  document.getElementById('mt-mode-blast').style.display  = mode === 'blast'  ? 'block' : 'none';
+  document.getElementById('mt-mode-custom').style.display = mode === 'custom' ? 'block' : 'none';
+}
+
+function mockFindOwners(btn) {
+  const info = document.getElementById('mt-owner-info');
+  info.textContent = 'Searching owners…';
+  setTimeout(() => { info.textContent = '140 owners found · 132 with open trades'; }, 700);
+}
+
+let blastRunning = false, blastTimer = null;
+function toggleBlast() {
+  const btn = document.getElementById('mt-blast-btn');
+  const wrap = document.getElementById('mt-prog-wrap');
+  const bar = document.getElementById('mt-prog-bar');
+  const log = document.getElementById('mt-blast-log');
+  blastRunning = !blastRunning;
+  if (blastRunning) {
+    btn.textContent = '■ Stop';
+    btn.style.background = '#2a1420';
+    btn.style.color = '#ff4466';
+    wrap.style.display = 'block';
+    let sent = 0; const total = 12;
+    const ts = () => new Date().toTimeString().slice(0,8);
+    addLog(log, `[${ts()}] Blasting 12 owners — delay 20s`, '#a855f7');
+    blastTimer = setInterval(() => {
+      sent++;
+      bar.style.width = (sent / total * 100) + '%';
+      addLog(log, `[${ts()}] Trade sent ${sent}/${total}`, '#a855f7');
+      if (sent >= total) { clearInterval(blastTimer); addLog(log, `[${ts()}] Done — 12 trades sent.`, '#f97316'); resetBlast(); }
+    }, 600);
+  } else {
+    clearInterval(blastTimer);
+    addLog(log, 'Stopped.', '#5a5080');
+    resetBlast();
+  }
+}
+function resetBlast() {
+  blastRunning = false;
+  const btn = document.getElementById('mt-blast-btn');
+  btn.textContent = '▶ Send to All Owners';
+  btn.style.background = '';
+  btn.style.color = '';
+}
+
+function toggleLarp(cb) {
+  const dot = document.getElementById('larp-dot');
+  const txt = document.getElementById('larp-status-txt');
+  if (cb.checked) {
+    dot.style.background = '#3fb950'; dot.style.boxShadow = '0 0 8px #3fb950';
+    txt.textContent = 'Active';
+  } else {
+    dot.style.background = ''; dot.style.boxShadow = 'none';
+    txt.textContent = 'Off';
+  }
 }
 
 function toggleRefresher() {
@@ -1653,6 +1927,95 @@ THEMES.forEach((t, i) => {
     });
   });
   tgrid.appendChild(btn);
+});
+
+/* ─── Interactivity enhancements ─────────────────────────────── */
+
+// Scroll progress bar + back-to-top visibility
+const progressBar = document.getElementById('scroll-progress');
+const toTopBtn = document.getElementById('to-top');
+const onScroll = () => {
+  const h = document.documentElement;
+  const scrolled = h.scrollTop / (h.scrollHeight - h.clientHeight || 1);
+  progressBar.style.width = (scrolled * 100) + '%';
+  toTopBtn.classList.toggle('show', h.scrollTop > 500);
+};
+window.addEventListener('scroll', onScroll, { passive: true });
+onScroll();
+
+// Scroll-reveal: auto-tag content elements, then observe
+const revealSelectors = [
+  '.eyebrow', '.section-title', '.section-sub',
+  '.feature-card', '.step', '.code-card',
+  '.changelog-item', '.theme-swatch', '.preview-info', '.mock-panel',
+];
+document.querySelectorAll(revealSelectors.join(',')).forEach(el => el.classList.add('reveal'));
+// Stagger siblings within grids for a cascading effect
+document.querySelectorAll('.features-grid, .themes-grid, .steps, .changelog').forEach(grid => {
+  [...grid.children].forEach((child, i) => {
+    if (child.classList.contains('reveal')) child.setAttribute('data-d', String((i % 5) + 1));
+  });
+});
+if ('IntersectionObserver' in window) {
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+} else {
+  document.querySelectorAll('.reveal').forEach(el => el.classList.add('in'));
+}
+
+// Scrollspy — highlight nav link for the section in view
+const navLinks = [...document.querySelectorAll('.nav-links a')];
+const sections = navLinks
+  .map(a => document.querySelector(a.getAttribute('href')))
+  .filter(Boolean);
+if ('IntersectionObserver' in window && sections.length) {
+  const spy = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        const id = '#' + e.target.id;
+        navLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === id));
+      }
+    });
+  }, { threshold: 0.4 });
+  sections.forEach(s => spy.observe(s));
+}
+
+// Cursor-reactive glow on feature cards
+document.querySelectorAll('.feature-card').forEach(card => {
+  card.addEventListener('pointermove', (ev) => {
+    const r = card.getBoundingClientRect();
+    card.style.setProperty('--mx', (ev.clientX - r.left) + 'px');
+    card.style.setProperty('--my', (ev.clientY - r.top) + 'px');
+  });
+});
+
+// Hero logo 3D tilt on mouse move (wrapper only — keeps the float animation)
+const heroWrap = document.querySelector('.hero-logo-wrap');
+const hero = document.querySelector('.hero');
+if (heroWrap && hero) {
+  heroWrap.style.transition = 'transform 0.3s cubic-bezier(0.22,1,0.36,1)';
+  heroWrap.style.transformStyle = 'preserve-3d';
+  let tiltRaf = null;
+  hero.addEventListener('pointermove', (ev) => {
+    if (tiltRaf) return;
+    tiltRaf = requestAnimationFrame(() => {
+      const r = hero.getBoundingClientRect();
+      const px = (ev.clientX - r.left) / r.width - 0.5;
+      const py = (ev.clientY - r.top) / r.height - 0.5;
+      heroWrap.style.transform = `perspective(900px) rotateY(${px * 12}deg) rotateX(${-py * 12}deg)`;
+      tiltRaf = null;
+    });
+  });
+  hero.addEventListener('pointerleave', () => {
+    heroWrap.style.transform = 'perspective(900px) rotateY(0deg) rotateX(0deg)';
+  });
+}
+
+// Esc closes the install modal
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') document.getElementById('install-modal')?.classList.remove('open');
 });
 </script>
 </body>
