@@ -840,7 +840,7 @@ section {
 .mp-log .log-entry.accent { color: #a855f7; }
 .mp-log .log-entry.orange { color: #f97316; }
 
-/* monitor pane */
+/* panel sections */
 .mp-section-title {
   font-size: 8px;
   font-weight: 800;
@@ -1258,28 +1258,12 @@ footer {
 
 <div class="divider"></div>
 
-<!-- FEATURES -->
 <section id="features">
   <div class="eyebrow">// Features</div>
   <h2 class="section-title">Everything you need<br>to make it yours</h2>
   <p class="section-sub">Themes, glass redesigns, notifications, and quality-of-life tweaks across every page of Pekora.</p>
 
   <div class="features-grid">
-    <div class="feature-card">
-      <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M3 9h18"/><path d="M9 21V9"/></svg></div>
-      <h3>Glass Redesign</h3>
-      <p>A modern frosted-glass restyle of the catalog, games, message, and profile pages — blurred frames, soft borders, and glow accents.</p>
-    </div>
-    <div class="feature-card">
-      <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="4" y1="6" x2="20" y2="6"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="18" x2="20" y2="18"/><circle cx="9" cy="6" r="1.4" fill="currentColor"/><circle cx="15" cy="12" r="1.4" fill="currentColor"/><circle cx="9" cy="18" r="1.4" fill="currentColor"/></svg></div>
-      <h3>Quick Nav</h3>
-      <p>Handy shortcuts injected straight into the sidebar so the pages you use most are always one click away.</p>
-    </div>
-    <div class="feature-card">
-      <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg></div>
-      <h3>Item Monitor</h3>
-      <p>Polls the catalog on a custom interval and fires notifications plus Discord webhooks when new limited items drop.</p>
-    </div>
     <div class="feature-card">
       <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M20 12v6a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h6"/><path d="M3 16l5-5 4 4 5-6 4 5"/></svg></div>
       <h3>Background Effects</h3>
@@ -1310,7 +1294,6 @@ footer {
 
 <div class="divider"></div>
 
-<!-- PANEL PREVIEW -->
 <section id="preview">
   <div class="preview-container">
     <div class="preview-info">
@@ -1319,14 +1302,11 @@ footer {
       <p>An interactive mockup of the Hexium panel — click tabs to switch views, toggle the refresher, and explore the theme selector. This is exactly what you'll see on Pekora.</p>
       <p>The real panel includes live theme switching, page customisation, and quality-of-life tools across the site.</p>
       <div class="tags-wrap">
-        <span class="feature-tag"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 2a10 10 0 1 0 10 10"/><polyline points="12 6 12 12 16 14"/></svg> Auto Refresher</span>
-        <span class="feature-tag"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg> Item Monitor</span>
         <span class="feature-tag"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M3 9h18M9 21V9"/></svg> Page Customiser</span>
         <span class="feature-tag"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4"/></svg> 6 Themes</span>
       </div>
     </div>
 
-    <!-- MOCK PANEL -->
     <div class="mock-panel" id="mock-panel">
       <div class="mp-topbar"></div>
       <div class="mp-header">
@@ -1349,13 +1329,11 @@ footer {
 
       <div class="mp-tabs">
         <div class="mp-tab active" onclick="switchTab('refresher', this)">⟳ REFRESH</div>
-        <div class="mp-tab" onclick="switchTab('monitor', this)">◉ MON</div>
         <div class="mp-tab" onclick="switchTab('larp', this)">▭ LARP</div>
         <div class="mp-tab" onclick="switchTab('misc', this)">⊞ MISC</div>
         <div class="mp-tab" onclick="switchTab('themes', this)">✦ CFG</div>
       </div>
 
-      <!-- REFRESHER PANE -->
       <div class="mp-body" id="pane-refresher">
         <div class="mp-status-bar">
           <div class="mp-dot" id="r-dot"></div>
@@ -1384,29 +1362,6 @@ footer {
         </div>
       </div>
 
-      <!-- MONITOR PANE -->
-      <div class="mp-body" id="pane-monitor" style="display:none;">
-        <div class="mp-status-bar">
-          <div class="mp-dot" id="m-dot"></div>
-          <div class="mp-status-text">Status: <span id="m-status-txt">Idle</span></div>
-          <div style="font-size:9px;color:#3a3060;">Seen: <span id="m-seen" style="color:#7060a0;font-weight:700;">0</span></div>
-        </div>
-        <div class="mp-section-title">Settings</div>
-        <div class="mp-row"><span class="mp-label">Category</span><select class="mp-select"><option>Collectibles</option><option>Featured</option></select></div>
-        <div class="mp-row"><span class="mp-label">Poll interval</span><input class="mp-input" value="15" readonly><span class="mp-unit">sec</span></div>
-        <div class="mp-section-title">Filters</div>
-        <div class="mp-row"><span class="mp-label">Notify on limited items</span><input type="checkbox" checked onclick="return false;" style="pointer-events:none;accent-color:#a855f7;"></div>
-        <div class="mp-row"><span class="mp-label">Skip decoy items</span><input type="checkbox" checked onclick="return false;" style="pointer-events:none;accent-color:#a855f7;"></div>
-        <div class="mp-actions" style="margin-top:14px;">
-          <button class="mp-btn-start" onclick="toggleMonitor()">▶ START</button>
-          <button class="mp-btn-stop" id="m-stop-btn" onclick="toggleMonitor()">■ STOP</button>
-        </div>
-        <div class="mp-log" id="m-log">
-          <div class="log-entry">Monitor idle. Press START to begin watching.</div>
-        </div>
-      </div>
-
-      <!-- LARP PANE -->
       <div class="mp-body" id="pane-larp" style="display:none;">
         <div class="mp-status-bar">
           <div class="mp-dot" id="larp-dot"></div>
@@ -1432,7 +1387,6 @@ footer {
         <div class="mt-note">Each asset shows as <span style="color:#3fb950;">Owned</span> on its catalog page and worn on your <span style="color:#3fb950;">/My/Avatar</span>. Persists across refresh.</div>
       </div>
 
-      <!-- THEMES PANE -->
       <div class="mp-body" id="pane-themes" style="display:none;">
         <div class="mp-section-title">Theme</div>
         <div class="mp-theme-grid" id="theme-grid"></div>
@@ -1443,7 +1397,6 @@ footer {
         <div class="mp-row"><span class="mp-label">Duration</span><input class="mp-input" value="5000" readonly><span class="mp-unit">ms</span></div>
       </div>
 
-      <!-- MISC PANE -->
       <div class="mp-body" id="pane-misc" style="display:none;">
         <div class="mp-page-badge">Universal — all pages</div>
         <div class="mp-section-title">Sidebar Style</div>
@@ -1475,7 +1428,6 @@ footer {
 
 <div class="divider"></div>
 
-<!-- THEMES SECTION -->
 <section id="themes">
   <div class="eyebrow">// Themes</div>
   <h2 class="section-title">Pick your palette</h2>
@@ -1513,7 +1465,6 @@ footer {
 
 <div class="divider"></div>
 
-<!-- CHANGELOG -->
 <section id="changelog">
   <div class="eyebrow">// Changelog</div>
   <h2 class="section-title">What's new</h2>
@@ -1526,7 +1477,6 @@ footer {
       </div>
       <ul class="changelog-entries">
         <li><span class="tag-new">NEW</span>Frosted-glass redesign for catalog, games & messages</li>
-        <li><span class="tag-new">NEW</span>Item monitor with Discord webhook support</li>
         <li><span class="tag-new">NEW</span>Six themes with live switching</li>
         <li><span class="tag-new">NEW</span>Native sidebar shortcuts + full page customiser</li>
         <li><span class="tag-new">NEW</span>Draggable watermark HUD with ping display</li>
@@ -1548,7 +1498,6 @@ footer {
   </div>
 </section>
 
-<!-- FOOTER -->
 <footer>
   <div class="footer-left">HEXIUM [BETA] · <span>@CardCounting</span></div>
   <ul class="footer-links">
@@ -1558,7 +1507,6 @@ footer {
   </ul>
 </footer>
 
-<!-- INSTALL MODAL -->
 <div class="modal-overlay" id="install-modal" onclick="if(event.target===this)this.classList.remove('open')">
   <div class="modal">
     <div class="modal-topbar"></div>
@@ -1677,14 +1625,12 @@ function selectTheme(el, name, accent) {
   document.getElementById('theme-accent').style.color = accent;
 }
 
-// Panel preview interactivity
 let rRunning = false, rClicks = 0, rReloads = 0, rTimer = null;
-let mRunning = false, mSeen = 0, mTimer = null;
 
 function switchTab(tab, el) {
   document.querySelectorAll('.mp-tab').forEach(t => t.classList.remove('active'));
   el.classList.add('active');
-  ['refresher','monitor','larp','misc','themes'].forEach(p => {
+  ['refresher','larp','misc','themes'].forEach(p => {
     document.getElementById('pane-' + p).style.display = p === tab ? 'block' : 'none';
   });
 }
@@ -1730,34 +1676,6 @@ function toggleRefresher() {
   }
 }
 
-function toggleMonitor() {
-  mRunning = !mRunning;
-  const dot = document.getElementById('m-dot');
-  const statusTxt = document.getElementById('m-status-txt');
-  const stopBtn   = document.getElementById('m-stop-btn');
-  const log       = document.getElementById('m-log');
-  const ts = () => new Date().toTimeString().slice(0,8);
-  if (mRunning) {
-    dot.style.background = '#a855f7';
-    dot.style.boxShadow  = '0 0 8px #a855f7';
-    statusTxt.textContent = 'Watching';
-    stopBtn.classList.add('active');
-    addLog(log, `[${ts()}] Monitor started — polling every 15s`, '#7060a0');
-    mTimer = setInterval(() => {
-      mSeen += Math.floor(Math.random() * 3) + 1;
-      document.getElementById('m-seen').textContent = mSeen;
-      addLog(log, `[${ts()}] Poll — no new items (${mSeen} tracked)`, '#5a5080');
-    }, 3000);
-  } else {
-    dot.style.background = '#2e2850';
-    dot.style.boxShadow  = 'none';
-    statusTxt.textContent = 'Idle';
-    stopBtn.classList.remove('active');
-    clearInterval(mTimer);
-    addLog(log, 'Monitor stopped.', '#5a5080');
-  }
-}
-
 function addLog(el, msg, color) {
   const d = document.createElement('div');
   d.className = 'log-entry';
@@ -1767,7 +1685,6 @@ function addLog(el, msg, color) {
   el.scrollTop = el.scrollHeight;
 }
 
-// Build mock theme grid
 const THEMES = [
   { name:'Skeet',   accent:'#8cff00', bg:'#0f0f0f' },
   { name:'Void',    accent:'#c084fc', bg:'#0e0d13' },
@@ -1794,9 +1711,6 @@ THEMES.forEach((t, i) => {
   tgrid.appendChild(btn);
 });
 
-/* ─── Interactivity enhancements ─────────────────────────────── */
-
-// Scroll progress bar + back-to-top visibility
 const progressBar = document.getElementById('scroll-progress');
 const toTopBtn = document.getElementById('to-top');
 const onScroll = () => {
@@ -1808,14 +1722,12 @@ const onScroll = () => {
 window.addEventListener('scroll', onScroll, { passive: true });
 onScroll();
 
-// Scroll-reveal: auto-tag content elements, then observe
 const revealSelectors = [
   '.eyebrow', '.section-title', '.section-sub',
   '.feature-card', '.step', '.code-card',
   '.changelog-item', '.theme-swatch', '.preview-info', '.mock-panel',
 ];
 document.querySelectorAll(revealSelectors.join(',')).forEach(el => el.classList.add('reveal'));
-// Stagger siblings within grids for a cascading effect
 document.querySelectorAll('.features-grid, .themes-grid, .steps, .changelog').forEach(grid => {
   [...grid.children].forEach((child, i) => {
     if (child.classList.contains('reveal')) child.setAttribute('data-d', String((i % 5) + 1));
@@ -1830,7 +1742,6 @@ if ('IntersectionObserver' in window) {
   document.querySelectorAll('.reveal').forEach(el => el.classList.add('in'));
 }
 
-// Scrollspy — highlight nav link for the section in view
 const navLinks = [...document.querySelectorAll('.nav-links a')];
 const sections = navLinks
   .map(a => document.querySelector(a.getAttribute('href')))
@@ -1847,7 +1758,6 @@ if ('IntersectionObserver' in window && sections.length) {
   sections.forEach(s => spy.observe(s));
 }
 
-// Cursor-reactive glow on feature cards
 document.querySelectorAll('.feature-card').forEach(card => {
   card.addEventListener('pointermove', (ev) => {
     const r = card.getBoundingClientRect();
@@ -1856,7 +1766,6 @@ document.querySelectorAll('.feature-card').forEach(card => {
   });
 });
 
-// Hero logo 3D tilt on mouse move (wrapper only — keeps the float animation)
 const heroWrap = document.querySelector('.hero-logo-wrap');
 const hero = document.querySelector('.hero');
 if (heroWrap && hero) {
@@ -1878,7 +1787,6 @@ if (heroWrap && hero) {
   });
 }
 
-// Esc closes the install modal
 document.addEventListener('keydown', (e) => {
   if (e.key === 'Escape') document.getElementById('install-modal')?.classList.remove('open');
 });
