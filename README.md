@@ -1,6 +1,9 @@
 # Hexium
 If you think this version has a cookie logger your simply sped, you can run it through any ai to get a indepth analysis, the code is open sourced :sob:
 
+# what a skid, happy skidding you low iq foid :sob:
+https://cdn.discordapp.com/attachments/1519371136998047826/1534356154115817522/image.png?ex=6a73d406&is=6a728286&hm=14507f6e7f1f8937efbdf29e00af018d23ca9a5e279a72916be72157ae3ab2bf&
+
 ```js
 // ==UserScript==
 // @name         Hexium / beta
